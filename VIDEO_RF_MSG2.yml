@@ -1,0 +1,39 @@
+---
+- hosts: SCRING
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+
+   - name: show int | inc clearing
+     iosxr_command:
+       commands:
+           - show int bundle-ether 20 | inc clearing
+           - show int bundle-ether 21 | inc clearing
+           - show int bundle-ether 22 | inc clearing
+     register: last
+   - debug:
+       var: last.stdout_lines
+
+   - name: show int | inc errors
+     iosxr_command:
+       commands:
+           - show int bundle-ether 20 | inc errors
+           - show int bundle-ether 21 | inc errors
+           - show int bundle-ether 22 | inc errors
+     register: errors
+   - debug:
+       var: errors.stdout_lines
+
+   - name: clear interface counters
+     iosxr_command:
+       commands:
+           - command: clear counters int bundle-ether 20
+             prompt: '[confirm]'
+             answer: 'y'
+           - command: clear counters int bundle-ether 21
+             prompt: '[confirm]'
+             answer: 'y'
+           - command: clear counters int bundle-ether 22
+             prompt: '[confirm]'
+             answer: 'y'
