@@ -1,0 +1,18 @@
+---
+- hosts: AGG
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+
+   - name: validate network connectivity from routers
+     ios_ping:
+       dest: '{{ item }}'
+       source: 'loopback100'
+       state: 'present'
+     with_items:
+       - '8.8.8.8'
+       - '97.107.96.17'
+
+    
+
