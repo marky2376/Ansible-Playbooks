@@ -2,7 +2,7 @@
 - 
   connection: network_cli
   gather_facts: false
-  hosts: LAB
+  hosts: LAB_ASR_9010
   tasks: 
     - name: "Rewrite ACL"
       iosxr_command: 
