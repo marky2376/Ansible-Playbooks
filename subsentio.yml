@@ -2,7 +2,7 @@
 - 
   connection: network_cli
   gather_facts: false
-  hosts: SCRING
+  hosts: LAB
   tasks: 
     - name: "Rewrite ACL"
       iosxr_command: 
