@@ -1,0 +1,15 @@
+--- 
+- 
+  connection: network_cli
+  gather_facts: false
+  hosts: SCRING
+  tasks: 
+    - name: "Rewrite ACL"
+      iosxr_command: 
+        commands: 
+          - "config t"
+          - "ipv4 access-list subsentio"
+          - "10 permit ipv4 host TargetIP any capture"
+          - "20 permit ipv4 any host TargetIP capture"
+          - commit
+          - end
