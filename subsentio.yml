@@ -5,8 +5,8 @@
   hosts: LAB_ASR_9010
   tasks: 
     - name: "Rewrite ACL"
-      iosxr_command: 
-        commands: 
+      iosxr_config: 
+        lines: 
           - config t
           - ipv4 access-list subsentio
           - 10 permit ipv4 host "TargetIP" any capture
