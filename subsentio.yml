@@ -5,11 +5,13 @@
   hosts: LAB
   tasks: 
     - name: "Rewrite ACL"
+     vars:
+        - Target_IP:  "{{ TargetIP | default(None) }}"
       iosxr_command: 
         commands: 
           - "config t"
           - "ipv4 access-list subsentio"
-          - "10 permit ipv4 host TargetIP any capture"
-          - "20 permit ipv4 any host TargetIP capture"
+          - "10 permit ipv4 host Target_IP any capture"
+          - "20 permit ipv4 any host Target_IP capture"
           - commit
           - end
