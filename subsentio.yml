@@ -7,8 +7,8 @@
     - name: "Rewrite ACL"
       iosxr_config: 
         lines:
-          - 10 permit ipv4 host "TargetIP" any capture
-          - 20 permit ipv4 any host "TargetIP" capture
+          - 10 permit ipv4 host 1.1.1.1 any capture
+          - 20 permit ipv4 any host 1.1.1.1 capture
         parents: ipv4 access-list subsentio
         
     - name: "Commit"
