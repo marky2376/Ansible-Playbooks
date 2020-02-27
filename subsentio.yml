@@ -10,5 +10,8 @@
           - 10 permit ipv4 host {{ TargetIP }} any capture
           - 20 permit ipv4 any host {{ TargetIP }} capture
         parents: ipv4 access-list subsentio
-        
+    - name: "Commit"
+      iosxr_command:
+        commands:
+          - commit        
 
