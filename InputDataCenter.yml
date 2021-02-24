@@ -6,4 +6,4 @@
   tasks: 
     - name: "Input DataCenter"
       vars:
-        - data_center: {{ DataCenter }}
+        - data_center: "{{ DataCenter }}"
