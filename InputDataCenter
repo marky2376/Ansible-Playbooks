@@ -1,0 +1,9 @@
+--- 
+- 
+  connection: local
+  gather_facts: false
+  hosts: localhost
+  tasks: 
+    - name: "Input DataCenter"
+      vars:
+        - data_center: {{ DataCenter }}
