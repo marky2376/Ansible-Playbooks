@@ -6,6 +6,7 @@
   
   tasks:
   
+  - name: Get variables
     vars:
       data_center: "{{ DataCenter }}"
       customer_name: "{{ CustomerName }}"
@@ -13,6 +14,6 @@
       ip_address: "{{ BVI_IP }}"
       prefix_mask: "{{ MASK }}"
     
-
+  - name: Print variables
     debug:
       msg: vars
