@@ -12,7 +12,4 @@
     prefix_mask: "{{ MASK }}"
     
   debug:
-    var: customer_name
-    var: evpn_id
-    var: ip_address
-    var: prefix_mask
+    msg: vars
