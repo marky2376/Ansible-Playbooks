@@ -13,4 +13,4 @@
     
   tasks:
     debug:
-    msg: vars
+      msg: vars
