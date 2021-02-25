@@ -4,14 +4,15 @@
   gather_facts: false
   hosts: localhost
   
-  vars:
-    data_center: "{{ DataCenter }}"
-    customer_name: "{{ CustomerName }}"
-    evpn_id: "{{ EVPN_ID }}"
-    ip_address: "{{ BVI_IP }}"
-    prefix_mask: "{{ MASK }}"
-    
   tasks:
+  
+    vars:
+      data_center: "{{ DataCenter }}"
+      customer_name: "{{ CustomerName }}"
+      evpn_id: "{{ EVPN_ID }}"
+      ip_address: "{{ BVI_IP }}"
+      prefix_mask: "{{ MASK }}"
+    
+
     debug:
-      msg: "{{ DataCenter }}"
-      
+      msg: vars
