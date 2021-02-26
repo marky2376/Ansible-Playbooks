@@ -6,12 +6,12 @@
   
   tasks:
   
-    vars:
-      data_center: "{{ DataCenter }}"
-      customer_name: "{{ CustomerName }}"
-      evpn_id: "{{ EVPN_ID }}"
-      ip_address: "{{ BVI_IP }}"
-      prefix_mask: "{{ MASK }}"
+    - vars:
+        data_center: "{{ DataCenter }}"
+        customer_name: "{{ CustomerName }}"
+        evpn_id: "{{ EVPN_ID }}"
+        ip_address: "{{ BVI_IP }}"
+        prefix_mask: "{{ MASK }}"
     
-    debug:
-      msg: vars
+   -  debug:
+        msg: vars
