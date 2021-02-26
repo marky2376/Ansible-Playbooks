@@ -15,7 +15,5 @@
   
     debug: 
       msg: "{{ customer_name }}"
-        
-    debug:
       msg: "{{ data_center }}"
         
