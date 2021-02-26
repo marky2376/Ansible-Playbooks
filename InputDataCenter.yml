@@ -13,6 +13,6 @@
         
   tasks:
   
-    debug: 
-      msg: vars
+    - debug: 
+        msg: vars
         
