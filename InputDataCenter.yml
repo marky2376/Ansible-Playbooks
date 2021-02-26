@@ -14,6 +14,5 @@
   tasks:
   
     debug: 
-      msg: "{{ customer_name }}"
-      msg: "{{ data_center }}"
+      msg: vars
         
