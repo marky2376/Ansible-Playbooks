@@ -14,5 +14,5 @@
   tasks:
   
     - debug: 
-        msg: "{{ customer_name }}"
+        msg: "{{ EVPN_ID }}"
         
