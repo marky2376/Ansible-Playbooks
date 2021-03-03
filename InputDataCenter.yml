@@ -19,7 +19,7 @@
     - name: "Config Router EVPN"
       iosxr_config: 
         lines:
-          - evi "{{ evpn_id }}"
+          - evi {{evpn_id}}
           - control-word-disable
           - advertise-mac
         parents: evpn
