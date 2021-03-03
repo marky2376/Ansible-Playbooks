@@ -17,6 +17,12 @@
         msg: "{{ EVPN_ID }}"
         
     - name: Config Router EVPN
+      iosxr_config: 
+        lines:
+          - evi "{{ evpn_id }}"
+          - control-word-disable
+          - advertise-mac
+        parents: evpn
     
     
    
