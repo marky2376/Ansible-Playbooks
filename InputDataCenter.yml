@@ -17,8 +17,8 @@
       iosxr_config: 
         lines:
           - evi {{evpn_id}}
-          - control-word-disable
-          - advertise-mac
+          - "control-word-disable"
+          - "advertise-mac"
         parents: evpn
         
     - name: "Config Bundle Interface"
