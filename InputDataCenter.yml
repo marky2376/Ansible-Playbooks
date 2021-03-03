@@ -28,6 +28,16 @@
           - encapsulation dot1q {{evpn_id}}
           - rewrite ingress tag pop 1 symmetric
         parents: interface Bundle-Ether6.{{evpn_id}} l2transport
+        
+    - name: "L2VPN"
+      iosxr_config: 
+        lines:
+          - bridge group METRO-E
+          - bridge-domain {{customer_name}}
+          - interface Bundle-Ether6.{{evpn_id}}
+          - routed interface BVI{{evpn_id}}
+          - evi {{evpn_id}}
+        parents: l2vpn
     
     
    
