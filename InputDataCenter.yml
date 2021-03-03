@@ -12,9 +12,6 @@
     prefix_mask: "{{ MASK }}"
         
   tasks:
-  
-    - debug: 
-        msg: "{{ EVPN_ID }}"
         
     - name: "Config Router EVPN"
       iosxr_config: 
@@ -23,6 +20,14 @@
           - control-word-disable
           - advertise-mac
         parents: evpn
+        
+    - name: "Config Bundle Interface"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - encapsulation dot1q {{evpn_id}}
+          - rewrite ingress tag pop 1 symmetric
+        parents: interface Bundle-Ether6.{{evpn_id}} l2transport
     
     
    
