@@ -29,7 +29,7 @@
           - rewrite ingress tag pop 1 symmetric
         parents: interface Bundle-Ether6.{{evpn_id}} l2transport
         
-    - name: "L2VPN"
+    - name: "Config L2VPN"
       iosxr_config: 
         lines:
           - bridge group METRO-E
