@@ -2,7 +2,7 @@
 - 
   connection: network_cli
   gather_facts: false
-  hosts: '{{ DataCEnter }}'
+  hosts: '{{ DataCenter }}'
    
   vars: 
     customer_name: "{{ CustomerName }}"
@@ -15,4 +15,9 @@
   
     - debug: 
         msg: "{{ EVPN_ID }}"
+        
+    - name: Config Router EVPN
+    
+    
+   
         
