@@ -49,6 +49,15 @@
         parents:
           - l2vpn
           - bridge group METRO-E
+          
+    - name: "Config OSPF"
+      iosxr_config: 
+        lines:
+          - interface BVI{{evpn_id}}
+          - passive enable
+        parents:
+          - router ospf MPLS
+          - area 0
     
     
    
