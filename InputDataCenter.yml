@@ -35,7 +35,7 @@
           - description {{customer_name}}
           - host-routing
           - arp timeout 30
-          - mac address {{evpn_id}}.{{evpn_id}}.{{evpn_id}}
+          - mac-address {{evpn_id}}.{{evpn_id}}.{{evpn_id}}
         parents: interface BVI {{evpn_id}}
         
     - name: "Config L2VPN"
