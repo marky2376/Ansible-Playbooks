@@ -1,0 +1,60 @@
+--- 
+- 
+  connection: network_cli
+  gather_facts: false
+  hosts: '{{ DataCenter }}'
+   
+  vars: 
+    customer_name: "{{ CustomerName }}"
+    data_center: "{{ DataCenter }}"
+    evpn_id: "{{ EVPN_ID }}"
+    ip_address: "{{ BVI_IP }}"
+    prefix_mask: "{{ MASK }}"
+        
+  tasks:
+        
+    - name: "Config Router EVPN"
+      iosxr_config: 
+        lines:
+          - evi {{evpn_id}}
+          - control-word-disable
+          - advertise-mac
+        parents: evpn
+        
+    - name: "Config Bundle Interface"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - encapsulation dot1q {{evpn_id}}
+          - rewrite ingress tag pop 1 symmetric
+        parents: interface Bundle-Ether6.{{evpn_id}} l2transport
+        
+    - name: "Config BVI Interface"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - host-routing
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+          - arp timeout 30
+          - mac-address 9ce1.33.33
+        parents: interface BVI {{evpn_id}}
+        
+    - name: "Config L2VPN"
+      iosxr_config: 
+        lines:
+          - bridge-domain {{customer_name}}
+          - interface Bundle-Ether6.{{evpn_id}}
+          - routed interface BVI{{evpn_id}}
+          - evi {{evpn_id}}
+        parents:
+          - l2vpn
+          - bridge group METRO-E
+          
+    - name: "Config OSPF"
+      iosxr_config: 
+        lines:
+          - interface BVI{{evpn_id}}
+          - passive enable
+        parents:
+          - router ospf MPLS
+          - area 0
