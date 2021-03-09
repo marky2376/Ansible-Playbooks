@@ -34,6 +34,7 @@
         lines:
           - description {{customer_name}}
           - host-routing
+          - ipv4 address {{ip_address}}{{prefix_mask}}
           - arp timeout 30
           - mac-address {{evpn_id}}.{{evpn_id}}.{{evpn_id}}
         parents: interface BVI {{evpn_id}}
