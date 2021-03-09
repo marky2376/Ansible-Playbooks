@@ -50,7 +50,7 @@
           - arp timeout 30
           - mac-address 9ce1.33.33
         parents: interface BVI {{evpn_id}}
-    - when: layer_3 == 'yes'
+      when: layer_3 == 'yes'
           
     - name: "Config OSPF"
       iosxr_config: 
@@ -60,4 +60,4 @@
         parents:
           - router ospf MPLS
           - area 0
-    - when: layer_3 == 'yes'
+      when: layer_3 == 'yes'
