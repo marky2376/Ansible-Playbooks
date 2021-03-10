@@ -41,16 +41,38 @@
           - l2vpn
           - bridge group METRO-E
         
-    - name: "Config BVI Interface"
+    - name: "Config BVI Interface for Commerce"
       iosxr_config: 
         lines:
           - description {{customer_name}}
           - host-routing
           - ipv4 address {{ip_address}}{{prefix_mask}}
           - arp timeout 30
-          - mac-address 9ce1.33.33
+          - mac-address 9ce1.99.99
         parents: interface BVI {{evpn_id}}
-      when: layer_3 == 'yes'
+      when: (layer_3 == 'yes' and data_center == "Commerce")
+      
+    - name: "Config BVI Interface for Gumlog"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - host-routing
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+          - arp timeout 30
+          - mac-address 9ce1.76cf.fcdf
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Gumlog")
+      
+     - name: "Config BVI Interface for Richland"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - host-routing
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+          - arp timeout 30
+          - mac-address 9ce1.76a4.12
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Richland")
           
     - name: "Config OSPF"
       iosxr_config: 
