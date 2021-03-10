@@ -22,13 +22,22 @@
           - advertise-mac
         parents: evpn
         
-    - name: "Config Bundle Interface"
+    - name: "Config Bundle Interface for layer 3"
       iosxr_config: 
         lines:
           - description {{customer_name}}
           - encapsulation dot1q {{evpn_id}}
           - rewrite ingress tag pop 1 symmetric
         parents: interface Bundle-Ether6.{{evpn_id}} l2transport
+      when: layer_3 == 'yes'
+      
+    - name: "Config Bundle Interface for layer 3"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - encapsulation dot1q {{evpn_id}}
+        parents: interface Bundle-Ether6.{{evpn_id}} l2transport
+      when: layer_3 == 'no'
         
     - name: "Config L2VPN"
       iosxr_config: 
