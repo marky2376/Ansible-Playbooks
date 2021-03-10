@@ -63,7 +63,7 @@
         parents: interface BVI {{evpn_id}}
       when: (layer_3 == 'yes' and data_center == "Gumlog")
       
-     - name: "Config BVI Interface for Richland"
+    - name: "Config BVI Interface for Richland"
       iosxr_config: 
         lines:
           - description {{customer_name}}
