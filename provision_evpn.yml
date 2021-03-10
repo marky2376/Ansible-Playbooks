@@ -74,7 +74,7 @@
         parents: interface BVI {{evpn_id}}
       when: (layer_3 == 'yes' and data_center == "Richland")
           
-    - name: "Config OSPF"
+    - name: "Config OSPF if layer 3"
       iosxr_config: 
         lines:
           - interface BVI{{evpn_id}}
