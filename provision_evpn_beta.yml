@@ -95,20 +95,20 @@
       when: layer_3 == 'yes'
       
 - name: Provision Switches Stage  
-  hosts: '{{switch_group}}'
+  hosts: "{{switch_group}}"
   tasks:
     
     - name: Set switch_group to Commerce
       set_fact:
-        switch_group: "Commerce_Switches"
+        switch_group: "{{ Commerce_Switches }}"
       when: data_center == 'Commerce'
     
     - name: Set switch_group to Gumlog
       set_fact:
-        switch_group: "Gumlog_Switches"
+        switch_group: "{{ Gumlog_Switches }}"
       when: data_center == 'Gumlog'
       
     - name: Set switch_group to Richland
       set_fact:
-        switch_group: "Richland_Switches"
+        switch_group: "{{ Richland_Switches }}"
       when: data_center == 'Richland'
