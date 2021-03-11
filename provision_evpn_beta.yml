@@ -95,7 +95,7 @@
       when: layer_3 == 'yes'
       
 - name: Provision Switches Stage  
-  hosts: "{{switch_group}}"
+  hosts: '{{switch_group}}'
   tasks:
     
     - name: Set switch_group to Commerce
