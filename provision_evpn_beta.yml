@@ -96,8 +96,8 @@
       
 - name: Provision Switches Stage  
   hosts: "{{switch_group}}"
-    tasks:
-
+    - tasks:
+    
       - name: Set switch_group to Commerce
         set_fact:
           switch_group: "Commerce_Switches"
