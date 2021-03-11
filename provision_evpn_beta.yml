@@ -2,7 +2,6 @@
 - 
   connection: network_cli
   gather_facts: false
-  hosts: '{{ DataCenter }}'
    
   vars: 
     customer_name: "{{ CustomerName }}"
@@ -12,7 +11,8 @@
     ip_address: "{{ BVI_IP }}"
     prefix_mask: "{{ MASK }}"
       
-- name: Provision Routers Stage    
+- name: Provision Routers Stage  
+  hosts: '{{ DataCenter }}'
   tasks:
         
     - name: "Config Router EVPN"
