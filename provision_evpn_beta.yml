@@ -95,7 +95,7 @@
 
 - name: "Provision Switches"
 
-  hosts: '{{ switch_group }}'
+  hosts: "{{ switch_group }}"
   
   vars: 
     customer_name: "{{ CustomerName }}"
