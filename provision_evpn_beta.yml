@@ -1,5 +1,5 @@
 --- 
-- 
+- name: "Provision Routers"
   connection: network_cli
   gather_facts: false
   hosts: '{{ DataCenter }}'
@@ -107,6 +107,8 @@
       set_fact:
         switch_group: Richland_Switches
       when: data_center == 'Richland'
+
+- name: "Provision Switches"
 
   hosts: '{{ switch_group }}'
   tasks:
