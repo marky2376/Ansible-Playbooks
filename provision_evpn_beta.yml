@@ -114,3 +114,7 @@
     - name: test print
       debug: 
         msg: "Hello World"
+
+    - name: test print 2
+      debug: 
+        msg: "Hello World again"
