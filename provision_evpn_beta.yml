@@ -92,7 +92,12 @@
           - router ospf MPLS
           - area 0
       when: layer_3 == 'yes'
-    
+
+- name: "Provision Switches"
+
+  hosts: '{{ switch_group }}'
+  tasks:
+  
     - name: Set switch_group to Commerce
       set_fact:
         switch_group: Commerce_Switches
@@ -107,12 +112,7 @@
       set_fact:
         switch_group: Richland_Switches
       when: data_center == 'Richland'
-
-- name: "Provision Switches"
-
-  hosts: '{{ switch_group }}'
-  tasks:
-  
+      
     - name: test print
       debug: 
         msg: "Hello World"
