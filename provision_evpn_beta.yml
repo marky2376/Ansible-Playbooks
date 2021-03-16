@@ -96,6 +96,12 @@
 - name: "Provision Switches"
 
   hosts: '{{ switch_group }}'
+  
+  vars: 
+    customer_name: "{{ CustomerName }}"
+    data_center: "{{ DataCenter }}"
+    evpn_id: "{{ EVPN_ID }}"
+    
   tasks:
   
     - name: Set switch_group to Commerce
