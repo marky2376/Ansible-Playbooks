@@ -93,4 +93,3 @@
           - router ospf MPLS
           - area 0
       when: layer_3 == 'yes'
-      
