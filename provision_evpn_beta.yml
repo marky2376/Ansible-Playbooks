@@ -92,15 +92,15 @@
           - router ospf MPLS
           - area 0
       when: layer_3 == 'yes'
+      
+    - name: Make vars persistant
+      set_fact:
+        customer_name: "{{ customer_name }}"
+        data_center: "{{ data_center }}"
+        evpn_id: "{{ evpn_id }}"
 
 - name: "Provision Switches"
-
-  hosts: "{{ switch_group }}"
-  
-  vars: 
-    customer_name: "{{ CustomerName }}"
-    data_center: "{{ DataCenter }}"
-    evpn_id: "{{ EVPN_ID }}"
+  hosts: '{{ switch_group }}'
     
   tasks:
   
