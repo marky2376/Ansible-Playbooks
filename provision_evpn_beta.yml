@@ -104,6 +104,9 @@
 
 - name: "Provision Switches"
   hosts: '{{ switch_group }}'
+  include_vars:
+    file: evpn_vars.yml
+    name: switch_vars
     
   tasks:
   
