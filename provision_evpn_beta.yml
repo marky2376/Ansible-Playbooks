@@ -97,7 +97,7 @@
       local_action: 
         module: copy 
         content: "{{ customer_name }} {{ data_center }} {{ evpn_id }}"
-        dest: /etc/ansible/vars/evpn.txt"
+        dest: /etc/ansible/vars/evpn_vars.txt"
 
 - name: "Provision Switches"
   hosts: '{{ switch_group }}'
