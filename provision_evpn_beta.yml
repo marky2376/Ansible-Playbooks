@@ -126,7 +126,7 @@
       when: data_center == 'Richland'
       
     - name: test print
-    - hosts: '{{ switch_group }}'
+      hosts: '{{ switch_group }}'
       debug: 
         msg: "Hello World"
 
