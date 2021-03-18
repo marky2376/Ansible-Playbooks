@@ -100,7 +100,7 @@
           - '{{ customer_name }}'
           - '{{ data_center }}'
           - "{{ evpn_id }}"
-        dest: /etc/ansible/vars/evpn_vars.yml"
+        dest: /var/lib/awx/venv/ansible/group_vars/evpn_vars.yml
         mode: 0666
 
 - name: "Provision Switches"
