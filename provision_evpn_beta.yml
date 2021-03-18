@@ -3,6 +3,7 @@
   connection: network_cli
   gather_facts: false
   hosts: '{{ DataCenter }}'
+  become: yes
    
   vars: 
     customer_name: "{{ CustomerName }}"
