@@ -101,6 +101,7 @@
           - '{{ data_center }}'
           - "{{ evpn_id }}"
         dest: /etc/ansible/vars/evpn_vars.yml"
+        mode: 0666
 
 - name: "Provision Switches"
   hosts: '{{ switch_group }}'
