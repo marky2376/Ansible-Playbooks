@@ -123,7 +123,7 @@
     - name: Set switch_group to Richland
       set_fact:
         switch_group: Richland_Switches
-      when: data_center == 'Richland'
+      when: data_center == "Richland"
       
     - name: test print
       debug: 
