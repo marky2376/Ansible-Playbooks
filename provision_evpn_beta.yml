@@ -96,12 +96,13 @@
     - name: Make vars persistant
       local_action: 
         module: copy 
-        with_items:
-          - { customer_name: "customer_name" }
-          - { data_center: "data_center" }
-          - { evpn_id: "evpn_id" }
-        dest: /etc/ansible/group_vars/evpn_vars.yml
-        mode: 0666
+        content:
+          with_items:
+            - { customer_name: "customer_name" }
+            - { data_center: "data_center" }
+            - { evpn_id: "evpn_id" }
+          dest: /etc/ansible/group_vars/evpn_vars.yml
+          mode: 0666
 
 - name: "Provision Switches"
   hosts: '{{ switch_group }}'
