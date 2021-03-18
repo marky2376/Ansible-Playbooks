@@ -128,7 +128,7 @@
     - name: test print
       debug: 
         msg: "Hello World"
-      delegate_to: "{{ groups[switch_group] }}"
+      delegate_to: "{{ groups[switch_group][0] }}"
 
     - name: test print 2
       debug: 
