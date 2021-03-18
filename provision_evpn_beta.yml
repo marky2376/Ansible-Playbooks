@@ -97,14 +97,14 @@
       local_action: 
         module: copy 
         content:
-          - customer_name: "{{ customer_name }}"
+          - customer_name: "{ customer_name }}"
           - data_center: "{{ data_center }}"
           - evpn_id: "{{ evpn_id }}"
         dest: /etc/ansible/group_vars/evpn_vars.yml
         mode: 0666
 
 - name: "Provision Switches"
-  hosts: localhost
+  hosts: '{{ switch_group }}'
   vars_files:
     - /etc/ansible/group_vars/evpn_vars.yml
     
@@ -126,7 +126,6 @@
       when: data_center == 'Richland'
       
     - name: test print
-      hosts: '{{ switch_group }}'
       debug: 
         msg: "Hello World"
 
