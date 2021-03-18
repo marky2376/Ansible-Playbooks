@@ -93,14 +93,13 @@
           - area 0
       when: layer_3 == 'yes'
       
-    - name: Make vars persistant
+    - name: Make vars persistent
       local_action: 
         module: copy 
         content:
-          with_items:
-            - { customer_name: "customer_name" }
-            - { data_center: "data_center" }
-            - { evpn_id: "evpn_id" }
+          - { customer_name: "{{ customer_name }}"
+          - { data_center: "{{ data_center }}"
+          - { evpn_id: "{{ evpn_id }}"
         dest: /etc/ansible/group_vars/evpn_vars.yml
         mode: 0666
 
