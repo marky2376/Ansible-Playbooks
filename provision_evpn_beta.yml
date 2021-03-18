@@ -125,11 +125,7 @@
         switch_group: Richland_Switches
       when: data_center == 'Richland'
       
-    - name: test print
-      debug: 
-        msg: "Hello World"
+    - name: show command
+      cisco.nxos.nxos_command:
+        commands: show version
       delegate_to: "{{ groups[switch_group][0] }}"
-
-    - name: test print 2
-      debug: 
-        msg: "Hello World again"
