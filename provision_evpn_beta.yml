@@ -96,10 +96,14 @@
     - name: Make vars persistant
       local_action: 
         module: copy 
-        content: 
-          - "{{ customer_name }}"
-          - "{{ data_center }}"
-          - "{{ evpn_id }}"
+        content: "{{ item.value }}"
+        with_items:
+          - variable: customer_name
+          - value: "{{ customer_name }}"
+          - variable: data_center
+          - value: "{{ data_center }}"
+          - variable: evpn_id
+          - value: "{{ evpn_id }}" 
         dest: /etc/ansible/group_vars/evpn_vars.yml
         mode: 0666
 
