@@ -97,9 +97,9 @@
       local_action: 
         module: copy 
         content:
-          - customer_name: {{ customer_name }}
-          - data_center: {{ data_center }}
-          - evpn_id: {{ evpn_id }}
+          - customer_name: "{{ customer_name }}"
+          - data_center: "{{ data_center }}"
+          - evpn_id: "{{ evpn_id }}"
         dest: /etc/ansible/group_vars/evpn_vars.yml
         mode: 0666
 
