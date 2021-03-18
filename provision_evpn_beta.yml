@@ -96,7 +96,7 @@
     - name: Make vars persistant
       local_action: 
         module: copy 
-        content: "{{ item.value }}"
+        content: "{{ vars[item] }}"
         with_items:
           - variable: customer_name
           - value: "{{ customer_name }}"
