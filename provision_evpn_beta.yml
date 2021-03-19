@@ -126,6 +126,6 @@
       when: data_center == 'Richland'
       
     - name: Test nxos
-      cisco.nxos.nxos_command:
+      nxos_config:
         commands: show version
       delegate_to: "{{ groups['switch_group'][0] }}"
