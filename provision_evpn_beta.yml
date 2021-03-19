@@ -124,8 +124,3 @@
       set_fact:
         switch_group: Richland_Switches
       when: data_center == 'Richland'
-      
-    - name: run show vers
-      cisco.nxos.nxos_command:
-        commands: show version
-      delegate_to: "{{ groups[switch_group][0] }}"
