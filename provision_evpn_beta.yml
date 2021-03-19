@@ -125,4 +125,8 @@
         switch_group: Richland_Switches
       when: data_center == 'Richland'
       
-     - ansible-inventory --list switch_group
+    - name: Test nxos
+      cisco.nxos.nxos_command:
+        commands:
+        - show version
+      delegate_to: "{{ groups['switch_group'][0] }}"
