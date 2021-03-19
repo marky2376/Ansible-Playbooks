@@ -124,3 +124,7 @@
       set_fact:
         switch_group: Richland_Switches
       when: data_center == 'Richland'
+      
+      -name: Test hostsvars
+       ansible-inventory --list switch_group
+       
