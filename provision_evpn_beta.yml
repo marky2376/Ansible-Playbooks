@@ -127,6 +127,5 @@
       
     - name: Test nxos
       cisco.nxos.nxos_command:
-        commands:
-        - show version
+        commands: show version
       delegate_to: "{{ groups['switch_group'][0] }}"
