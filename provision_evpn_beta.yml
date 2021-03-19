@@ -128,4 +128,3 @@
     - name: Test nxos
       nxos_config:
         commands: show version
-      delegate_to: "{{ groups['switch_group'][0] }}"
