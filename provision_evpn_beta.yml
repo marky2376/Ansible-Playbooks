@@ -125,6 +125,14 @@
         switch_group: Richland_Switches
       when: data_center == 'Richland'
       
+    - name: Set port to layer 2
+      nxos_interface:
+        name: Ethernet1/2
+        description: 'Configured by Ansible'
+        mode: layer2
+        admin_state: up
+      delegate_to: "{{ groups[switch_group][0] }}"
+      
     - name: Test nxos
       nxos_l2_interface:
         name: Ethernet1/2
