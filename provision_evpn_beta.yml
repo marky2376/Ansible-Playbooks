@@ -126,6 +126,8 @@
       when: data_center == 'Richland'
       
     - name: Test nxos
-      nxos_config:
-        commands: show version
+      nxos_l2_interface:
+        name: Ethernet1/2
+        mode: trunk
+        trunk_vlans: 5-10
       delegate_to: "{{ groups[switch_group][0] }}"
