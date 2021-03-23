@@ -1,7 +1,16 @@
-- name: "Provision Switches"
-  hosts: localhost
+--- 
+- name: "Provision Routers"
+  connection: network_cli
+  gather_facts: false
+  hosts: '{{ switch_group }}'
   vars_files:
     - /etc/ansible/group_vars/evpn_vars.yml
+    
+  vars: 
+    customer_name: "{{ CustomerName }}"
+    switch: "{{ SWITCH }}"
+    interface_num: "{{ INTERFACE }}"
+    vlans: "{{ VLANS }}"
     
   tasks:
   
@@ -22,15 +31,15 @@
       
     - name: Set port to layer 2
       nxos_interface:
-        name: Ethernet1/2
+        name: {{interface_num}}
         description: 'Configured by Ansible'
         mode: layer2
         admin_state: up
-      delegate_to: "{{ groups[switch_group][0] }}"
+      delegate_to: "{{ switch }}"
       
     - name: Test nxos
       nxos_l2_interface:
         name: Ethernet1/2
         mode: trunk
         trunk_vlans: 5-10
-      delegate_to: "{{ groups[switch_group][0] }}"
+      delegate_to: "{{ switch }}"
