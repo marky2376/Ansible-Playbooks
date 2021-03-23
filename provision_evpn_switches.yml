@@ -9,6 +9,7 @@
   vars: 
     customer_name: "{{ CustomerName }}"
     switch_group: "{{ SWITCHES }}"
+    switch_position: "{{ SWITCH }}"
     interface_num: "{{ INTERFACE }}"
     vlans: "{{ VLANS }}"
     
