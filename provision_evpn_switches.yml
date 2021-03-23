@@ -1,5 +1,5 @@
 --- 
-- name: "Provision Routers"
+- name: "Provision Switches"
   connection: network_cli
   gather_facts: false
   hosts: '{{ switch_group }}'
@@ -32,14 +32,14 @@
     - name: Set port to layer 2
       nxos_interface:
         name: {{interface_num}}
-        description: 'Configured by Ansible'
+        description: {{customer_name}}
         mode: layer2
         admin_state: up
       delegate_to: "{{ switch }}"
       
     - name: Test nxos
       nxos_l2_interface:
-        name: Ethernet1/2
+        name: {{interface_num}}
         mode: trunk
-        trunk_vlans: 5-10
+        trunk_vlans: {{ vlans }}
       delegate_to: "{{ switch }}"
