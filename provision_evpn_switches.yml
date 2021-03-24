@@ -16,7 +16,7 @@
   
     - name: Set port to layer 2
       nxos_interface:
-        name: {{interface_num}}
+        name: "{{ interface_num }}"
         description: {{customer_name}}
         mode: layer2
         admin_state: up
@@ -24,7 +24,7 @@
       
     - name: Test nxos
       nxos_l2_interface:
-        name: {{interface_num}}
+        name: "{{ interface_num }}"
         mode: trunk
         trunk_vlans: {{ vlans }}
       delegate_to: "{{ groups[switch_group][switch_position] }}"
