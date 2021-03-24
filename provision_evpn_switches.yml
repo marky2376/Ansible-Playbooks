@@ -27,5 +27,5 @@
       nxos_l2_interface:
         name: "{{ interface_num }}"
         mode: trunk
-        trunk_vlans: "{{ vlans }}"
+        trunk_allowed_vlans: "{{ vlans }}"
       delegate_to: "{{ groups[switch_group][switch_position] }}"
