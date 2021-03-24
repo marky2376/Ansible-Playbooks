@@ -45,6 +45,6 @@
         name: port-channel66
         mode: trunk
         trunk_vlans: "{{ vlans }}"
-        save_when: modified
+        save_when: changed
       
       
