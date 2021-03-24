@@ -40,10 +40,10 @@
         mode: trunk
         trunk_vlans: "{{ vlans }}"
           
-   - name: Add Vlans to vPC link
-     nxos_l2_interface:
-       name: port-channel66
-       mode: trunk
-       trunk_vlans: "{{ vlans }}"
+    - name: Add Vlans to vPC link
+      nxos_l2_interface:
+        name: port-channel66
+        mode: trunk
+        trunk_vlans: "{{ vlans }}"
       
       
