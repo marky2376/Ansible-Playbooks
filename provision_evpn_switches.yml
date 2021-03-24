@@ -10,6 +10,7 @@
     switch_group: "{{ SWITCHES }}"
     switch_position: "{{ SWITCH }}"
     interface_num: "{{ INTERFACE }}"
+    interface_des: "{{ DESCRIPTION }}"
     vlans: "{{ VLANS }}"
     
   tasks:
