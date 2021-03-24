@@ -17,7 +17,7 @@
     - name: Set port to layer 2
       nxos_interface:
         name: "{{ interface_num }}"
-        description: "{{ customer_name }}"
+        description: "customer_name"
         mode: layer2
         admin_state: up
       delegate_to: "{{ groups[switch_group][switch_position] }}"
