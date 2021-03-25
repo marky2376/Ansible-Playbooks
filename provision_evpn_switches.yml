@@ -48,6 +48,6 @@
      
     - name: Save run-config
       nxos_config:
-        save_when: changed   
+        save_when: always  
       
       
