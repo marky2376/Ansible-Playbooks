@@ -1,5 +1,5 @@
 ---
-- name: Playbook_1
-    import_playbook: 00-playbook-1.yml
-- name: Playbook_2
-    import_playbook: 01-playbook-2.yml
+- name: Provision Routers
+    import_playbook: provision_evpn_routers.yml
+- name: Provision Switches
+    import_playbook: provision_evpn_switches.yml
