@@ -1,5 +1,6 @@
 ---
 - name: Provision Routers
-    import_playbook: provision_evpn_routers.yml
+  import_playbook: provision_evpn_routers.yml
+  
 - name: Provision Switches
-    import_playbook: provision_evpn_switches.yml
+  import_playbook: provision_evpn_switches.yml
