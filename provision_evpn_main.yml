@@ -1,0 +1,5 @@
+---
+- name: Playbook_1
+    import_playbook: 00-playbook-1.yml
+- name: Playbook_2
+    import_playbook: 01-playbook-2.yml
