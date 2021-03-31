@@ -7,7 +7,7 @@
       tower_job_launch:
         job_template: "Provision EVPN circuit BETA"
         tower_verify_ssl: no
-        extra_vars: 
+        vars: 
           customer_name: "{{ CustomerName }}"
           data_center: "{{ DataCenter }}"
           evpn_id: "{{ EVPN_ID }}"
@@ -19,7 +19,7 @@
       tower_job_launch:
         job_template: "Provision EVPN Circuit Switches"
         tower_verify_ssl: no
-        extra_vars: 
+        vars: 
           switch_group: "{{ SWITCHES }}"
           switch_position: "{{ SWITCH }}"
           interface_num: "{{ INTERFACE }}"
