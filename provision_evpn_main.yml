@@ -1,8 +1,11 @@
 ---
-- name: Launch Provision Routers
-  tower_job_launch:
-    job_template: "Provision EVPN circuit BETA"
+- name: Launch Provision Routers and Switches jobs
+  tasks:
+
+    - name: Launch Provision Routers
+      tower_job_launch:
+        job_template: "Provision EVPN circuit BETA"
    
-- name: Launch Provision Switches
-  tower_job_launch:
-    job_template: "Provision EVPN Circuit Switches"
+    - name: Launch Provision Switches
+      tower_job_launch:
+        job_template: "Provision EVPN Circuit Switches"
