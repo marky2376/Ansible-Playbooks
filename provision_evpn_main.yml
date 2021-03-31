@@ -1,6 +1,8 @@
 ---
-- name: Provision Routers
-  import_playbook: provision_evpn_routers.yml
-  
-- name: Provision Switches
-  import_playbook: provision_evpn_switches.yml
+- name: Launch Provision Routers
+  tower_job_launch:
+    job_template: "Provision EVPN circuit BETA"
+   
+- name: Launch Provision Switches
+  tower_job_launch:
+    job_template: "Provision EVPN Circuit Switches"
