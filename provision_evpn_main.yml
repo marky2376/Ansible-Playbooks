@@ -6,7 +6,9 @@
     - name: Launch Provision Routers
       tower_job_launch:
         job_template: "Provision EVPN circuit BETA"
+        tower_verify_ssl: no
    
     - name: Launch Provision Switches
       tower_job_launch:
         job_template: "Provision EVPN Circuit Switches"
+        tower_verify_ssl: no
