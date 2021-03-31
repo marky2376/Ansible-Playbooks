@@ -1,6 +1,6 @@
 ---
 - name: Launch Provision Routers and Switches jobs
-  hosts: localhost
+  hosts: LAB
   tasks:
 
     - name: Launch Provision Routers
