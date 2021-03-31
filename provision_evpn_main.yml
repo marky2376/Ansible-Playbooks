@@ -7,6 +7,8 @@
       tower_job_launch:
         job_template: "Provision EVPN circuit BETA"
         tower_verify_ssl: no
+        tower_username: mneely
+        tower_password: tall7tree
    
     - name: Launch Provision Switches
       tower_job_launch:
