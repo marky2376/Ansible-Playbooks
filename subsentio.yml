@@ -2,7 +2,8 @@
 - 
   connection: network_cli
   gather_facts: false
-  hosts: LAB_ASR_9010
+  hosts: '{{ DataCenter }}'
+
   tasks: 
     - name: "Rewrite ACL"
       iosxr_config: 
