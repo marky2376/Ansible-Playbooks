@@ -49,6 +49,18 @@
         parents:
           - l2vpn
           - bridge group METRO-E
+      when: layer_3 == 'yes'
+      
+      - name: "Config L2VPN"
+      iosxr_config: 
+        lines:
+          - bridge-domain {{customer_name}}
+          - interface Bundle-Ether6.{{evpn_id}}
+          - evi {{evpn_id}}
+        parents:
+          - l2vpn
+          - bridge group METRO-E
+      when: layer_3 == 'no'
         
     - name: "Config BVI Interface for Commerce"
       iosxr_config: 
