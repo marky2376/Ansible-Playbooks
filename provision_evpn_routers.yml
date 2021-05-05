@@ -101,7 +101,7 @@
           - description {{customer_name}}
           - ipv4 address {{ip_address}}{{prefix_mask}}
         parents: interface BVI {{evpn_id}}
-      when: (layer_3 == 'yes' and data_center == "Chester CO")
+      when: (layer_3 == 'yes' and data_center == "Chester_CO")
       
     - name: "Config BVI Interface for Lewisville CO"
       iosxr_config: 
@@ -117,7 +117,7 @@
           - description {{customer_name}}
           - ipv4 address {{ip_address}}{{prefix_mask}}
         parents: interface BVI {{evpn_id}}
-      when: (layer_3 == 'yes' and data_center == "Great Falls")
+      when: (layer_3 == 'yes' and data_center == "Great_Falls")
       
     - name: "Config BVI Interface for Winnsboro HE"
       iosxr_config: 
