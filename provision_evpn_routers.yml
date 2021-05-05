@@ -51,7 +51,7 @@
           - bridge group METRO-E
       when: layer_3 == 'yes'
       
-      - name: "Config L2VPN"
+    - name: "Config L2VPN"
       iosxr_config: 
         lines:
           - bridge-domain {{customer_name}}
