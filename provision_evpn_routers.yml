@@ -167,8 +167,14 @@
         commands: show configuration commit changes last {{x}}
       register: changes
       
+    - name: "Create customer folder"
+      ansible.builtin.file:
+        path: /etc/some_directory
+        state: directory
+        mode: 0755
+      
     - name: "Write configuration changes to a file"
       copy: 
         content: "{{ changes.stdout | replace('\\n', '\n') }}"
         dest: /var/local/customers/{{customer_name}}/{{customer_name}}.txt
-        mode: 0755
+        mode: 0666
