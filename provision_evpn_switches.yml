@@ -3,8 +3,6 @@
   connection: network_cli
   gather_facts: false
   hosts: '{{ switch_group }}'
-  vars_files:
-    - /etc/ansible/group_vars/evpn_vars.yml
     
   vars: 
     switch_group: "{{ SWITCHES }}"
@@ -45,6 +43,12 @@
         name: port-channel66
         mode: trunk
         trunk_vlans: "{{ vlans }}"
+        
+    - name: "Write configuration changes to a file"
+      copy: 
+        content: "{{ changes.stdout | replace('\\n', '\n') }}"
+        dest: /var/local/customers/{{interface_des}}/{{interface_des}}_switch{{switch_position}}.txt
+        mode: 0666
      
     - name: Save run-config
       nxos_config:
