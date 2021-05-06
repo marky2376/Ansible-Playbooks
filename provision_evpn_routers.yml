@@ -167,12 +167,9 @@
         commands: show configuration commit changes last {{x}}
       register: changes
       
-    - name: Make vars persistent
+    - name: "Write configuration changes to a file"
       local_action: 
         module: copy 
-        content:
-          - customer_name: "{ customer_name }}"
-          - data_center: "{{ data_center }}"
-          - evpn_id: "{{ evpn_id }}"
-        dest: /etc/ansible/group_vars/evpn_vars.yml
+          content: "{{ changes.stdout | replace('\\n', '\n') }}"
+        dest: /var/local/{{customer_name}}/{{customer_name}}.txt
         mode: 0666
