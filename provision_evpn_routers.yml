@@ -161,6 +161,20 @@
           - area 0
       when: layer_3 == 'yes'
       
+    - name: "Register commit changes to variable"
+      cisco.iosxr.iosxr_command:
+        commands:
+          - show configuration commit changes last 3
+      register: changes
+      when: layer_3 == 'no'
+        
+    - name: "Register commit changes to variable"
+      cisco.iosxr.iosxr_command:
+        commands:
+          - show configuration commit changes last 3
+      register: changes
+      when: layer_3 == 'no'
+      
     - name: Make vars persistent
       local_action: 
         module: copy 
