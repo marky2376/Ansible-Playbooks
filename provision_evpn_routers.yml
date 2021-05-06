@@ -171,5 +171,5 @@
       local_action: 
         module: copy 
           content: "{{ changes.stdout | replace('\\n', '\n') }}"
-        dest: /var/local/{{customer_name}}/{{customer_name}}.txt
+        dest: /var/local/customers/{{customer_name}}/{{customer_name}}.txt
         mode: 0666
