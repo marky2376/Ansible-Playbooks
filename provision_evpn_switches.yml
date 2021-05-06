@@ -35,13 +35,13 @@
       
     - name: Add Vlans to router uplink
       nxos_l2_interface:
-        name: port-channel6
+        name: port-channel{{y}}
         mode: trunk
         trunk_vlans: "{{ vlans }}"
           
     - name: Add Vlans to vPC link
       nxos_l2_interface:
-        name: port-channel66
+        name: port-channel{{y}}{{y}}
         mode: trunk
         trunk_vlans: "{{ vlans }}"
         
