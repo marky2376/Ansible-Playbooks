@@ -11,6 +11,7 @@
     layer_3: "{{ LAYER_3 }}"
     ip_address: "{{ BVI_IP }}"
     prefix_mask: "{{ MASK }}"
+    x: "{{ '3' if layer_3 == 'no' else '5' }}"
       
   tasks:
         
@@ -160,20 +161,12 @@
           - router ospf MPLS
           - area 0
       when: layer_3 == 'yes'
-      
-    - name: "Register commit changes to variable"
-      cisco.iosxr.iosxr_command:
-        commands:
-          - show configuration commit changes last 3
-      register: changes
-      when: layer_3 == 'no'
         
     - name: "Register commit changes to variable"
       cisco.iosxr.iosxr_command:
         commands:
-          - show configuration commit changes last 5
+          - show configuration commit changes last {{x}}
       register: changes
-      when: layer_3 == 'yes'
       
     - name: Make vars persistent
       local_action: 
