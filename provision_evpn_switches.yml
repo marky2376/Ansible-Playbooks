@@ -10,6 +10,7 @@
     interface_num: "{{ INTERFACE }}"
     interface_des: "{{ DESCRIPTION }}"
     vlans: "{{ VLANS }}"
+    y: "{{ '8' if switch_group == 'Chester_CO_POD2' else '6' }}"
     
   tasks:
   
