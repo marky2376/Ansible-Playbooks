@@ -169,9 +169,9 @@
       
     - name: "Create customer folder"
       ansible.builtin.file:
-        path: /etc/some_directory
+        path: /var/local/customers/{{customer_name}}
         state: directory
-        mode: 0777
+        mode: 0755
       
     - name: "Write configuration changes to a file"
       copy: 
