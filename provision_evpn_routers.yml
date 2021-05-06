@@ -30,7 +30,7 @@
           - description {{customer_name}}
           - encapsulation dot1q {{evpn_id}}
           - rewrite ingress tag pop 1 symmetric
-        parents: interface Bundle-Ether6.{{evpn_id}} l2transport
+        parents: interface Bundle-Ether{{y}}.{{evpn_id}} l2transport
       when: layer_3 == 'yes'
       
     - name: "Config Bundle Interface for layer 2"
@@ -38,14 +38,14 @@
         lines:
           - description {{customer_name}}
           - encapsulation dot1q {{evpn_id}}
-        parents: interface Bundle-Ether6.{{evpn_id}} l2transport
+        parents: interface Bundle-Ether{{y}}.{{evpn_id}} l2transport
       when: layer_3 == 'no'
         
     - name: "Config L2VPN"
       iosxr_config: 
         lines:
           - bridge-domain {{customer_name}}
-          - interface Bundle-Ether6.{{evpn_id}}
+          - interface Bundle-Ether{{y}}.{{evpn_id}}
           - routed interface BVI{{evpn_id}}
           - evi {{evpn_id}}
         parents:
@@ -57,7 +57,7 @@
       iosxr_config: 
         lines:
           - bridge-domain {{customer_name}}
-          - interface Bundle-Ether6.{{evpn_id}}
+          - interface Bundle-Ether{{y}}.{{evpn_id}}
           - evi {{evpn_id}}
         parents:
           - l2vpn
