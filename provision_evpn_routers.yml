@@ -163,7 +163,7 @@
       when: layer_3 == 'yes'
         
     - name: "Register commit changes to variable"
-      cisco.iosxr.iosxr_command:
+      iosxr_command:
         commands: show configuration commit changes last {{x}}
       register: changes
       
