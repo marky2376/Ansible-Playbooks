@@ -45,6 +45,12 @@
         mode: trunk
         trunk_vlans: "{{ vlans }}"
         
+    - name: "Register commit changes to variable"
+      nxos_command:
+        commands:
+          - command: show running-config diff
+      register: changes
+        
     - name: "Write configuration changes to a file"
       copy: 
         content: "{{ changes.stdout | replace('\\n', '\n') }}"
