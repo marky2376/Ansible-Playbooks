@@ -45,7 +45,7 @@
         mode: trunk
         trunk_vlans: "{{ vlans }}"
         
-    - name: "Register commit changes to variable"
+    - name: "Register config changes to variable"
       nxos_command:
         commands:
           - command: show running-config diff
