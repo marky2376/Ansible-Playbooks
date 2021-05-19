@@ -1,0 +1,35 @@
+--- 
+- name: "Provision Switches"
+  connection: local
+  hosts: localhost
+  gather_facts: false
+  
+  vars: 
+    location: "{{ LOCATION }}"
+  
+  tasks:
+  
+    - name: Get a new available IP inside MGMT vlan 2002
+      netbox_ip_address:
+        netbox_url: http://netbox.truvista.net:8085
+        validate_certs: False
+        netbox_token: 9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2
+        data:
+          prefix: 172.18.0.0/22
+        state: new
+      when: location == "MGMT"
+      
+      
+    - name: Get a new prefix when circuit is South Carolina
+      netbox_ip_address:
+        netbox_url: http://netbox.truvista.net:8085
+        validate_certs: False
+        netbox_token: 9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2
+        data:
+          parent: "{{ prefix_parent }}"
+          prefix_length: "{{ prefix_length }}"
+          description: "{{ prefix_desc }}"
+        state: new
+        first_available: yes
+      register: prefix
+      when: location == "South_Carolina"
