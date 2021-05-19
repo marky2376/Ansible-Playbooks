@@ -1,5 +1,5 @@
 --- 
-- name: "Provision Switches"
+- name: "Reserve IP(s)"
   connection: local
   hosts: localhost
   gather_facts: false
