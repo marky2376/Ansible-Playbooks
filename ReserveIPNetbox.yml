@@ -3,6 +3,8 @@
   connection: local
   hosts: localhost
   gather_facts: false
+  collections:
+    - netbox.netbox
   
   vars:
     location: "{{ LOCATION }}"
