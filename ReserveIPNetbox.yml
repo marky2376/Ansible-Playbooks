@@ -3,8 +3,6 @@
   connection: local
   hosts: localhost
   gather_facts: false
-  collections:
-    - netbox.netbox
   
   vars:
     location: "{{ LOCATION }}"
@@ -14,6 +12,7 @@
   tasks:
   
     - name: Get a new available IP inside MGMT vlan 2002
+      netbox.netbox.netbox_device:
       netbox_ip_address:
         netbox_url: http://netbox.truvista.net:8085
         validate_certs: False
@@ -26,6 +25,7 @@
       
       
     - name: Get a new prefix when circuit is South Carolina
+      netbox.netbox.netbox_device:
       netbox_ip_address:
         netbox_url: http://netbox.truvista.net:8085
         validate_certs: False
@@ -41,6 +41,7 @@
       
       
     - name: Get a new prefix when circuit is Georgia
+      netbox.netbox.netbox_device:
       netbox_ip_address:
         netbox_url: http://netbox.truvista.net:8085
         validate_certs: False
