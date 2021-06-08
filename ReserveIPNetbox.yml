@@ -20,6 +20,7 @@
           prefix: 172.18.0.0/22
           description: "{{ description }}"
         state: new
+      register: IPAddress
       when: location == "MGMT"
       
       
