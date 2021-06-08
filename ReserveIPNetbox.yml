@@ -55,6 +55,6 @@
       
     - name: Print MGMT IP reserved
       debug:
-        msg: "The IP address reserved for {{ description }} is {{ IPAddress }}
+        msg: "The IP address reserved for {{ description }} is {{ IPAddress }}"
       when: location == "MGMT"
 
