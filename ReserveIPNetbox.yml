@@ -20,7 +20,7 @@
           prefix: 172.18.0.0/22
           description: "{{ description }}"
         state: new
-      register: IPAddress
+      register: mgmt_address
       when: location == "MGMT"
       
       
@@ -55,6 +55,6 @@
       
     - name: Print MGMT IP reserved
       debug:
-        msg: "The IP address reserved for {{ description }} is {{ IPAddress }}"
+        msg: "The IP address reserved for {{ description }} is {{ mgmt_address }}"
       when: location == "MGMT"
 
