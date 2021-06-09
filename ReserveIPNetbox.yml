@@ -55,7 +55,7 @@
       
     - name: Print MGMT IP reserved
       debug:
-        msg: "The IP address reserved for {{ description }} is {{ mgmt_address }}"
+        msg: "The IP address reserved for {{ C_description }} is {{ mgmt_address }}"
       when: location == "MGMT"
       
     - name: "Print IP"
