@@ -6,7 +6,7 @@
   
   vars:
     location: "{{ LOCATION }}"
-    description: "{{CIRCUIT_DESC}}"
+    c_description: "{{CIRCUIT_DESC}}"
     prefix_length: "{{PREFIX}}"
   
   tasks:
@@ -18,7 +18,7 @@
         netbox_token: 9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2
         data:
           prefix: 172.18.0.0/22
-          description: "{{ description }}"
+          description: "{{ c_description }}"
         state: new
       register: mgmt_address
       when: location == "MGMT"
@@ -32,7 +32,7 @@
         data:
           parent: "206.74.207.0/24"
           prefix_length: "{{ prefix_length }}"
-          description: "{{ description }}"
+          description: "{{ c_description }}"
         state: new
         first_available: yes
       register: prefix
@@ -47,7 +47,7 @@
         data:
           parent: "192.96.63.0/24"
           prefix_length: "{{ prefix_length }}"
-          description: "{{ description }}"
+          description: "{{ c_description }}"
         state: new
         first_available: yes
       register: prefix
@@ -60,5 +60,5 @@
       
     - name: "Print IP"
       debug:
-        msg: "{{ query('netbox.netbox.nb_lookup', 'ip-addresses', api_filter= 'data={{ description }}', api_endpoint='http://netbox.truvista.net:8085', token='9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2', validate_certs='False') }}"
+        msg: "{{ query('netbox.netbox.nb_lookup', 'ip-addresses', api_filter= 'data={{ c_description }}', api_endpoint='http://netbox.truvista.net:8085', token='9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2', validate_certs='False') }}"
 
