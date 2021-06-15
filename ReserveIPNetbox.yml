@@ -55,7 +55,7 @@
       
     - name: Parse IP
       set_fact:
-        ip_address: "{{ mgmt_address.stdout | regex_search(.*ip_address.*,'\\1') | first }}"
+        ip_address: "{{ mgmt_address.stdout | regex_search('.*ip_address.*','\\1') | first }}"
       
     - name: Print IP
       debug:
