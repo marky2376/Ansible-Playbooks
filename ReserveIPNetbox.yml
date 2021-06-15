@@ -53,10 +53,11 @@
       register: prefix
       when: location == "Georgia"
       
-    - name: Print MGMT IP reserved
+    - name: Print and Store MGMT IP
+      set_fact:
+        ip_address: "{{ mgmt_address.stdout | regex_search(.*ip_address.*,'\\1') | first }}"
       debug:
-        msg: "The IP address reserved for {{ c_description }} is {{ mgmt_address }}"
-      when: location == "MGMT"
+        var: ip_address
       
     - name: "Print IP"
       debug:
