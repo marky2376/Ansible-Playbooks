@@ -53,9 +53,11 @@
       register: prefix
       when: location == "Georgia"
       
-    - name: Print and Store MGMT IP
+    - name: Parse IP
       set_fact:
         ip_address: "{{ mgmt_address.stdout | regex_search(.*ip_address.*,'\\1') | first }}"
+      
+    - name: Print IP
       debug:
         var: ip_address
       
