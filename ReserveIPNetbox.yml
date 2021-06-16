@@ -56,10 +56,8 @@
     - name: Parse IP
       vars:
         ip_address: "{{ mgmt_address | regex_search('.*ip_address.*','\\1') | first }}"
-      
-    - name: Print IP
       debug:
-        var: ip_address
+        var: ip_address      
       
     - name: "Print IP"
       debug:
