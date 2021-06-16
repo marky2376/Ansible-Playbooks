@@ -54,7 +54,7 @@
       when: location == "Georgia"
       
     - name: Parse IP
-      set_fact:
+      vars:
         ip_address: "{{ mgmt_address | regex_search('.*ip_address.*','\\1') | first }}"
       
     - name: Print IP
