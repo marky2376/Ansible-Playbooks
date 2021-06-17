@@ -52,6 +52,11 @@
         first_available: yes
       register: prefix
       when: location == "Georgia"
+      
+    - name: "loop through list from a variable"
+      debug:
+        msg: "IP address is: {{ item }}"
+      with_items: "{{ ip_address }}"
             
     - name: "Print IP"
       debug:
