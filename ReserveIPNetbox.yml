@@ -55,7 +55,7 @@
       
     - name: "loop through list from a variable"
       debug:
-        msg: "{{ mgmt_address | ipv4 }}"
+        msg: "{{ mgmt_address | ipaddr }}"
             
     - name: "Print IP"
       debug:
