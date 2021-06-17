@@ -55,8 +55,8 @@
       
     - name: "loop through list from a variable"
       debug:
-        msg: "IP address is: {{ item }}"
-      with_items: "{{ ip_address }}"
+        msg: "IP address is: {{ ip_address }}"
+      with_items: "{{ mgmt_address }}"
             
     - name: "Print IP"
       debug:
