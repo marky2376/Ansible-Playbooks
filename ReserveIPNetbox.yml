@@ -55,7 +55,7 @@
       
     - name: "Print IP from variable"
       debug:
-        msg: "{{ mgmt_address | ipv4 }}"
+        msg: "{{ mgmt_address | ansible.netcommon.ipaddr }}"
             
     - name: "Print IP from netbox query"
       debug:
