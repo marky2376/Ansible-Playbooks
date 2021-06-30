@@ -54,8 +54,8 @@
       when: location == "Georgia"
       
     - name: "Print IP from variable"
-      debug:
-        msg: "{{ mgmt_address | ipv4 }}"
+      debug 
+        msg: "{{ mgmt_address | ipv4('network') }}"
             
     - name: "Print IP from netbox query"
       debug:
