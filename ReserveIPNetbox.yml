@@ -54,8 +54,8 @@
       when: location == "Georgia"
       
     - name: "Determine value type"
-      debug:
-        msg: |-
+      debug: 
+    msg: |-
         {
           {%- if mgmt_address is string -%}
              "string": "{{ mgmt_address }}"
@@ -69,7 +69,7 @@
         }
       
     - name: "Print IP from variable"
-      debug 
+      debug: 
         msg: "{{ mgmt_address | ipv4 }}"
             
     - name: "Print IP from netbox query"
