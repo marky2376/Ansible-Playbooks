@@ -55,7 +55,7 @@
       
     - name: "Determine value type"
       debug: 
-    msg: |-
+        msg: |-
         {
           {%- if mgmt_address is string -%}
              "string": "{{ mgmt_address }}"
