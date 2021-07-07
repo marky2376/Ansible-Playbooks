@@ -62,11 +62,11 @@
       debug:
         msg: |-
          {
-          {%- if value is string -%}
+          {%- if mgmt_address2 is string -%}
              "string": "{{ mgmt_address2 }}"
-          {%- elif value is mapping -%}
+          {%- elif mgmt_address2 is mapping -%}
             "dict": {{ mgmt_address2 }}
-          {%- elif value is iterable -%}
+          {%- elif mgmt_address2 is iterable -%}
             "list": {{ mgmt_address2 }}
           {%- else -%}
             "other": "{{ mgmt_address2 }}"
