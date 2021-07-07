@@ -58,7 +58,7 @@
         msg: "{{ mgmt_address['ip_address'] }}"
       register: mgmt_address2
       
-    - name: "Print IP from variable"
-      debug: 
-        msg: "{{ mgmt_address2 | ipv4 }}"
+    - name: "Print IP"
+      debug:
+        msg: "{{ mgmt_address2['address'] }}"
             
