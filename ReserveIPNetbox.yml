@@ -60,4 +60,4 @@
       
     - name: "Print address"
       debug:
-        msg: "{{ mgmt_address2['address'] }}"
+        msg: "{{ mgmt_address2["address"] }}"
