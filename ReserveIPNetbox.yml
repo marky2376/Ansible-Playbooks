@@ -61,7 +61,7 @@
       
     - name: "Print IP"
       debug:
-        msg: {{ mgmt_address2 }}
+        msg: "{{ mgmt_address2 }}"
       
     - name: "Print IP from variable"
       debug: 
