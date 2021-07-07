@@ -58,7 +58,17 @@
         msg: "{{ mgmt_address['ip_address'] }}"
       register: mgmt_address2
       
-    - name: "Print IP"
-      debug:
-        msg: "{{ mgmt_address2['"address"'] }}"
-            
+    - name: "Print address"
+     debug:
+       msg: |-
+       {
+        {%- if value is string -%}
+           "string": "{{ mgmt_address2 }}"
+        {%- elif value is mapping -%}
+          "dict": {{ mgmt_address2 }}
+        {%- elif value is iterable -%}
+          "list": {{ mgmt_address2 }}
+        {%- else -%}
+          "other": "{{ mgmt_address2 }}"
+        {%- endif -%}
+       }
