@@ -59,8 +59,8 @@
       register: mgmt_address2
       
     - name: "Print address"
-     debug:
-       msg: |-
+      debug:
+        msg: |-
          {
           {%- if value is string -%}
              "string": "{{ mgmt_address2 }}"
