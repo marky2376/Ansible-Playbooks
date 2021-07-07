@@ -55,9 +55,9 @@
       
    
     - set_fact:
-        mgmt_address2: "{{dict2 |combine({item.key: item.value})}}"
+        mgmt_address2: "{{mgmt_address2 |combine({item.key: item.value})}}"
       when: "{{item.key in ['ip_address']}}"
-      with_dict: "{{dict}}"
+      with_dict: "{{mgmt_address}"
       
     - name: "Print IP"
       debug: mgmt_address2
