@@ -60,7 +60,8 @@
       with_dict: "{{mgmt_address}"
       
     - name: "Print IP"
-      debug: mgmt_address2
+      debug:
+        msg: {{ mgmt_address2 }}
       
     - name: "Print IP from variable"
       debug: 
