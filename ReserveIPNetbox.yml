@@ -60,15 +60,4 @@
       
     - name: "Print address"
       debug:
-        msg: |-
-         {
-          {%- if mgmt_address2 is string -%}
-             "string": "{{ mgmt_address2 }}"
-          {%- elif mgmt_address2 is mapping -%}
-            "dict": {{ mgmt_address2 }}
-          {%- elif mgmt_address2 is iterable -%}
-            "list": {{ mgmt_address2 }}
-          {%- else -%}
-            "other": "{{ mgmt_address2 }}"
-          {%- endif -%}
-         }
+        msg: "{{ mgmt_address2['address'] }}"
