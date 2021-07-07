@@ -56,8 +56,8 @@
    
     - name: "Print IP"
       debug:
-        msg: "Ip Address: {{ key.value.ip_address.ipaddr }}"
-      with_dict: "{{ mgmt_address }}"
+        msg: "{{ item.value|select('match','^ip_address-(.*)$')|list }}"
+      loop: "{{ mgmt_address|dict2items }}"
       
     - name: "Print IP from variable"
       debug: 
