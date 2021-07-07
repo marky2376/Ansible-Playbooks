@@ -54,9 +54,10 @@
       when: location == "Georgia"
       
    
-    - name: extract the list of keys
+    - name: "Print IP"
       debug:
-        msg: '{{ mgmt_address | dict2items | map(attribute="key") | list }}'
+        msg: "Ip Address: {{ key.value.ip_address.ipaddr }}"
+      with_dict: "{{ mgmt_address }}"
       
     - name: "Print IP from variable"
       debug: 
