@@ -53,20 +53,10 @@
       register: prefix
       when: location == "Georgia"
       
-    - name: "Determine value type"
-      debug: 
-        msg: |-
-          {
-            {%- if mgmt_address is string -%}
-               "string": "{{ mgmt_address }}"
-            {%- elif mgmt_address is mapping -%}
-              "dict": {{ mgmt_address }}
-            {%- elif mgmt_address is iterable -%}
-              "list": {{ mgmt_address }}
-            {%- else -%}
-              "other": "{{ mgmt_address }}"
-            {%- endif -%}
-          }
+   
+   - name: extract the list of keys
+     debug:
+       msg: '{{ mgmt_address | dict2items | map(attribute="key") | list }}'
       
     - name: "Print IP from variable"
       debug: 
