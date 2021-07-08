@@ -60,4 +60,4 @@
      
     - name: "Print IP address"
       debug:
-        msg: {{ mgmt_address2 }}
+        msg: "{{ mgmt_address2 }}"
