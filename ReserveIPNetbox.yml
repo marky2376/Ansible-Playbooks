@@ -58,6 +58,7 @@
         msg: "{{ mgmt_address['ip_address'] }}"
       register: mgmt_address2
      
-    - name: "Print Keys"
+    - name: "Print IP address"
       debug:
-        msg: '{{ mgmt_address2 | dict2items | map(attribute="key") | list }}'
+        msg: "IP {{ item.key }} is {{ item.value.address }} "
+      loop: "{{ lookup('dict', mgmt_address2) }}"
