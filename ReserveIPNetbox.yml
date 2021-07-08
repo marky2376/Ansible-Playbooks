@@ -61,4 +61,4 @@
     - name: "Print IP address"
       debug:
         msg: "IP {{ item.key }} is {{ item.value.address }} "
-      loop: "{{ lookup('dict', mgmt_address2) }}"
+      loop: "{{ lookup('dict', (mgmt_address2)) }}"
