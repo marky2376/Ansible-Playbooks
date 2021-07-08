@@ -54,9 +54,9 @@
       when: location == "Georgia"
       
     - name: "Print IP"
-      debug:
-        msg: "{{ mgmt_address['ip_address'] }}"
-      register: mgmt_address2
+      set_fact:
+        mgmt_address2: "{{ mgmt_address['ip_address'] }}"
+     
      
     - name: "Print IP address"
       debug:
