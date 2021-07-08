@@ -53,7 +53,7 @@
       register: prefix
       when: location == "Georgia"
       
-    - name: "Print IP"
+    - name: "Set fact for IP"
       set_fact:
         mgmt_address2: "{{ mgmt_address['ip_address'] }}"
      
