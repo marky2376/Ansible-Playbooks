@@ -57,7 +57,7 @@
       debug:
         msg: "{{ mgmt_address['ip_address'] }}"
       register: mgmt_address2
-      
-    - name: "Print address"
+     
+    - name: "Print Keys"
       debug:
-        msg: "{{ mgmt_address2["address"] }}"
+        msg: '{{ mgmt_address2 | dict2items | map(attribute="key") | list }}'
