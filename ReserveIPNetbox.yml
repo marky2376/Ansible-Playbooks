@@ -35,7 +35,7 @@
           description: "{{ c_description }}"
         state: present
         first_available: yes
-      register: prefix
+      register: c_prefix
       when: location == "South_Carolina"
       
       
@@ -50,7 +50,7 @@
           description: "{{ c_description }}"
         state: present
         first_available: yes
-      register: prefix
+      register: c_prefix
       when: location == "Georgia"
       
     - name: "Set fact for IP"
