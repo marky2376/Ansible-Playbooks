@@ -55,7 +55,7 @@
       
     - name: "Set fact for IP"
       set_fact:
-        mgmt_address2: "{{ mgmt_address['ip_address'] }}
+        mgmt_address2: "{{ mgmt_address['ip_address'] }}"
       when: location == "MGMT"
      
     - name: "Print IP address"
