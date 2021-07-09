@@ -66,4 +66,4 @@
     - name: "Print IP address"
       debug:
         var: prefix
-      when: {location == "South_Carolina" or "Georgia")
+      when: (location == "South_Carolina" or "Georgia")
