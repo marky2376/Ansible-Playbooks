@@ -33,7 +33,7 @@
           parent: "206.74.207.0/24"
           prefix_length: "{{ prefix_length }}"
           description: "{{ c_description }}"
-        state: new
+        state: present
         first_available: yes
       register: prefix
       when: location == "South_Carolina"
@@ -48,7 +48,7 @@
           parent: "192.96.63.0/24"
           prefix_length: "{{ prefix_length }}"
           description: "{{ c_description }}"
-        state: new
+        state: present
         first_available: yes
       register: prefix
       when: location == "Georgia"
