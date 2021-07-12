@@ -65,5 +65,5 @@
       
     - name: "Print Prefix"
       debug:
-        msg: c_prefix
+        msg: "{{ c_prefix }}"
       when: (location == "South_Carolina" or "Georgia")
