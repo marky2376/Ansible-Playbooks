@@ -35,7 +35,7 @@
           description: "{{ c_description }}"
         state: present
         first_available: yes
-        tag: "{{ c_description }}"
+        tags: "{{ c_description }}"
       register: c_prefix
       when: location == "South_Carolina"
       
@@ -51,7 +51,7 @@
           description: "{{ c_description }}"
         state: present
         first_available: yes
-        tag: "{{ c_description }}"
+        tags: "{{ c_description }}"
       register: c_prefix
       when: location == "Georgia"
       
