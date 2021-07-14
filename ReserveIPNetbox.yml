@@ -33,7 +33,8 @@
           parent: "206.74.207.0/24"
           prefix_length: "{{ prefix_length }}"
           description: "{{ c_description }}"
-          tags: - TEST_MARK
+          tags: 
+            - TEST_MARK
         state: present
         first_available: yes
       register: c_prefix
@@ -49,7 +50,8 @@
           parent: "192.96.63.0/24"
           prefix_length: "{{ prefix_length }}"
           description: "{{ c_description }}"
-          tags: - TEST_MARK
+          tags: 
+            - TEST_MARK
         state: present
         first_available: yes
       register: c_prefix
