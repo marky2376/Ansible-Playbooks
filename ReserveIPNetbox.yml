@@ -35,6 +35,7 @@
           description: "{{ c_description }}"
         state: present
         first_available: yes
+        tag: "{{ c_description }}"
       register: c_prefix
       when: location == "South_Carolina"
       
@@ -50,6 +51,7 @@
           description: "{{ c_description }}"
         state: present
         first_available: yes
+        tag: "{{ c_description }}"
       register: c_prefix
       when: location == "Georgia"
       
@@ -65,6 +67,6 @@
       
     - name: "Print IP from netbox query"
       debug:
-        msg: "{{ query('netbox.netbox.nb_lookup', 'prefixes',  api_filter='description=' ~ c_description, api_endpoint='http://netbox.truvista.net:8085', token='9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2', validate_certs='False') }}"
+        msg: "{{ query('netbox.netbox.nb_lookup', 'prefixes',  api_filter= tag ~ c_description, api_endpoint='http://netbox.truvista.net:8085', token='9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2', validate_certs='False') }}"
       when: (location == "South_Carolina" or location == "Georgia")
 
