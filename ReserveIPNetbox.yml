@@ -65,6 +65,6 @@
       
     - name: "Set fact for Prefix"
       set_fact:
-        prefix2: "{{ c_prefix['prefix'] }}"
+        prefix2: "{{ c_prefix['display'] }}"
       when: (location == "South_Carolina" or location == "Georgia")
 
