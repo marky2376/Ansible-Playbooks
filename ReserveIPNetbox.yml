@@ -63,8 +63,8 @@
         var: mgmt_address2['address']
       when: location == "MGMT"
       
-    - name: "Set fact for Prefix"
-      set_fact:
-        prefix2: "{{ c_prefix['display'] }}"
+    - name: "Print Prefix"
+      debug:
+        msg: "{{ c_prefix }}"
       when: (location == "South_Carolina" or location == "Georgia")
 
