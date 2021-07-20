@@ -45,11 +45,11 @@
         validate_certs: False
         netbox_token: 9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2
         data:
-          parent: "152.44.56.0/24"
+          parent: "152.44.48.0/20"
           prefix_length: "{{ prefix_length }}"
           description: "{{ c_description }}"
         state: present
-        first_available: no
+        first_available: yes
       register: g_prefix
       when: location == "Georgia"
       
