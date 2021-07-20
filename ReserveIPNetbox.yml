@@ -70,6 +70,6 @@
       
     - name: "Print Prefix"
       debug:
-        var: s_prefix2
+        var: s_prefix2['prefix']
       when: location == "South_Carolina"
 
