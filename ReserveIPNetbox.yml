@@ -72,4 +72,14 @@
       debug:
         var: s_prefix2['prefix']
       when: location == "South_Carolina"
+      
+    - name: "Set fact for Prefix"
+      set_fact:
+        g_prefix2: "{{ s_prefix['prefix'] }}"
+      when: location == "Georgia"
+      
+    - name: "Print Prefix"
+      debug:
+        var: g_prefix2['prefix']
+      when: location == "Georgia"
 
