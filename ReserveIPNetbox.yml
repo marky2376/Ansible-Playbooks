@@ -48,8 +48,8 @@
           parent: "152.44.56.0/24"
           prefix_length: "{{ prefix_length }}"
           description: "{{ c_description }}"
-        state: absent
-        first_available: yes
+        state: present
+        first_available: no
       register: g_prefix
       when: location == "Georgia"
       
