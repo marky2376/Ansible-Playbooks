@@ -1,5 +1,5 @@
 --- 
-- name: "Reserve IP(s)"
+- name: "Config from Netbox"
   connection: local
   hosts:  RICH_NCS_1
   gather_facts: False 
