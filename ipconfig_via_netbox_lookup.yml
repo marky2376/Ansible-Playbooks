@@ -14,7 +14,7 @@
       ip_address: "{{ item.value.prefix }}"
     loop: "{{ query('netbox.netbox.nb_lookup', 'prefixes', api_filter='description=' ~ customer_name, api_endpoint='http://netbox.truvista.net:8085', token='9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2', validate_certs='False') }}"
   
-   - name: "Print IP address"
+  - name: "Print IP address"
       debug:
         var: ip_address
   
