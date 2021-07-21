@@ -51,6 +51,7 @@
         commands:
           - command: show running-config diff
       register: changes
+      delegate_to: "{{ groups[switch_group][switch_position] }}"
         
     - name: "Write configuration changes to a file"
       copy: 
