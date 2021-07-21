@@ -1,7 +1,7 @@
 --- 
 - name: "Reserve IP(s)"
   connection: local
-  hosts: localhost
+  hosts:  RICH_NCS_1
   gather_facts: False 
   
   vars:
