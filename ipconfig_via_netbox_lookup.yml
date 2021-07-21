@@ -1,6 +1,6 @@
 --- 
 - name: "Config from Netbox"
-  connection: local
+  connection: network_cli
   hosts:  RICH_NCS_1
   gather_facts: False 
   
