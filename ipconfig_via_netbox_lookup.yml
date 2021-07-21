@@ -1,0 +1,10 @@
+ - name: "Config BVI Interface for Richland"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - host-routing
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+          - arp timeout 30
+          - mac-address 9ce1.76a4.12
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Richland")
