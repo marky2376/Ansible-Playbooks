@@ -49,7 +49,7 @@
     - name: "Register config changes to variable"
       nxos_command:
         commands:
-          - command: show diff rollback-patch running-config startup-config | exc class-map
+          - command: show diff rollback-patch startup-config running-config | exc class-map
       register: changes
       delegate_to: "{{ groups[switch_group][switch_position] }}"
         
