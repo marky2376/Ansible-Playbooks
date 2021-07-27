@@ -67,15 +67,10 @@
       set_fact:
         prefix_info_sc: "{{ s_prefix['prefix']['prefix'] }}"
         
-    - name: "30 - Abstract IP info "
-      set_fact:
-        ip_address: "{{ prefix_info_sc['ip_address']['address'] | ipaddr('ip')  }}"
-        netmask: "{{ prefix_info_sc['ip_address']['address'] | ipaddr('netmask') }}"
-        
       
     - name: "Print Prefix"
       debug:
-        var: ip_address
+        var: prefix_info_sc
       when: location == "South_Carolina"
       
     - name: "Set fact for Prefix"
