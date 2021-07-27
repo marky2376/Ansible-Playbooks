@@ -65,7 +65,7 @@
       
     - name: "20 - SHORTEN PREFIX DICT"
       set_fact:
-        prefix_info_sc: "{{ s_prefix['prefix']['prefix'] }}
+        prefix_info_sc: "{{ s_prefix['prefix']['prefix'] }}"
         
     - name: "30 - Abstract IP info "
       set_fact:
