@@ -66,6 +66,12 @@
     - name: "20 - SHORTEN PREFIX DICT"
       set_fact:
         prefix_info_sc: "{{ s_prefix['prefix']['prefix'] }}"
+      when: location == "South Carolina"
+        
+    - name: "Print Prefix"
+      debug:
+        var: prefix_info_sc
+      when: location == "South Carolina"
         
     - name: "Set fact for Prefix"
       set_fact:
@@ -76,16 +82,4 @@
       debug:
         var: g_prefix2['prefix']
       when: location == "Georgia"
-      
-    - name: "Create customer folder"
-      ansible.builtin.file:
-        path: /var/local/customers/{{c_description}}
-        state: directory
-        mode: 0755
-      
-    - name: "Write configuration changes to a file"
-      copy: 
-        content: "{{ prefix_info_sc | replace('\\n', '\n') }}"
-        dest: /var/local/customers/{{c_description}}/prefix_info.txt
-        mode: 0666
-
+     
