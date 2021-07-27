@@ -75,11 +75,11 @@
         
     - name: "Set fact for Prefix"
       set_fact:
-        g_prefix2: "{{ g_prefix['prefix'] }}"
+        g_prefix2: "{{ g_prefix['prefix']['prefix'] }}"
       when: location == "Georgia"
       
     - name: "Print Prefix"
       debug:
-        var: g_prefix2['prefix']
+        var: g_prefix2
       when: location == "Georgia"
      
