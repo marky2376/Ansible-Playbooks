@@ -77,6 +77,12 @@
         var: g_prefix2['prefix']
       when: location == "Georgia"
       
+    - name: "Create customer folder"
+      ansible.builtin.file:
+        path: /var/local/customers/{{c_description}}
+        state: directory
+        mode: 0755
+      
     - name: "Write configuration changes to a file"
       copy: 
         content: "{{ prefix_info_sc | replace('\\n', '\n') }}"
