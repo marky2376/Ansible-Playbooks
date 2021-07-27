@@ -63,14 +63,14 @@
         var: mgmt_address2['address']
       when: location == "MGMT"
       
-    - name: "Set fact for Prefix"
+    - name: "30 - SET FACTS TO ASSIGN IP ADDRESS TO CISCO IOS ROUTER"
       set_fact:
-        s_prefix2: "{{ s_prefix['prefix'] }}"
-      when: location == "South_Carolina"
+        ip_address: "{{ s_prefix['ip_address']['address'] | ipaddr('ip')  }}"
+        netmask: "{{ s_prefix['ip_address']['address'] | ipaddr('netmask') }}"
       
     - name: "Print Prefix"
       debug:
-        var: s_prefix2['prefix']
+        var: ip_address
       when: location == "South_Carolina"
       
     - name: "Set fact for Prefix"
