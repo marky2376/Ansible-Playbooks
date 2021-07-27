@@ -67,12 +67,6 @@
       set_fact:
         prefix_info_sc: "{{ s_prefix['prefix']['prefix'] }}"
         
-      
-    - name: "Print Prefix"
-      debug:
-        var: prefix_info_sc
-      when: location == "South_Carolina"
-      
     - name: "Set fact for Prefix"
       set_fact:
         g_prefix2: "{{ g_prefix['prefix'] }}"
