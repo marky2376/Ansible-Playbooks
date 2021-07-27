@@ -35,7 +35,7 @@
           description: "{{ c_description }}"
         state: present
         first_available: yes
-      register: s_prefix
+      register: s_prefix['prefix']['prefix']
       when: location == "South_Carolina"
       
       
