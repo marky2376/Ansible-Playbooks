@@ -79,7 +79,7 @@
       
     - name: "Write configuration changes to a file"
       copy: 
-        content: "{{ prefix_info_sc.stdout | replace('\\n', '\n') }}"
+        content: "{{ prefix_info_sc | replace('\\n', '\n') }}"
         dest: /var/local/customers/{{c_description}}/prefix_info.txt
         mode: 0666
 
