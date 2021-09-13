@@ -41,7 +41,7 @@
         parents: interface Bundle-Ether{{y}}.{{evpn_id}} l2transport
       when: layer_3 == 'no'
         
-    - name: "Config L2VPN"
+    - name: "Config L2VPN for Layer 3"
       iosxr_config: 
         lines:
           - bridge-domain {{customer_name}}
@@ -53,7 +53,7 @@
           - bridge group METRO-E
       when: layer_3 == 'yes'
       
-    - name: "Config L2VPN"
+    - name: "Config L2VPN for Layer 2"
       iosxr_config: 
         lines:
           - bridge-domain {{customer_name}}
