@@ -25,15 +25,26 @@
           - command: show int status
       when: (preview == "yes")
       
-    - name: Build Monitor Session
+    - name: Build Monitor Session 1
       nxos_config:
         lines:
         - description Harmonic NMX {" monitor "}
         - source interface {" interface "}
-        - 30 permit ip 3.3.3.3/32 any log
+        - destination interface Ethernet2/41
         - 40 permit ip 4.4.4.4/32 any log
-        parents: ip access-list test
-        before: no ip access-list test
+        parents: monitor session {" monitor "}
+        before: no monitor session {" monitor "}
         replace: block
-      delegate_to:
-      when: switch is Nexus 1
+      when: (monitor == "1")
+      
+    - name: Build Monitor Session 2
+      nxos_config:
+        lines:
+        - description Harmonic NMX {" monitor "}
+        - source interface {" interface "}
+        - destination interface Ethernet1/4
+        - 40 permit ip 4.4.4.4/32 any log
+        parents: monitor session {" monitor "}
+        before: no monitor session {" monitor "}
+        replace: block
+      when: (monitor == "2")
