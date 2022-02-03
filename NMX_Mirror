@@ -1,5 +1,5 @@
 --- 
-- name: "Provision Switches"
+- name: "Provision Port Mirror"
   connection: network_cli
   gather_facts: false
   hosts: Chester_HE_Nexus Pod_1
@@ -8,10 +8,8 @@
     preview: "{{ PREVIEW }}"
     port_descriptions "{{ PORT_DESC }}"
     switch: "{{ SWITCH }}"
-    monitor: "{{ MONITOR }}"
-    interface_des: "{{ DESCRIPTION }}"
-    vlans: "{{ VLANS }}"
-    y: "{{ '8' if switch_group == 'Chester_CO_POD2' else '6' }}"
+    monitor: "{{ MONITOR }}" 
+    interface: "{{ INTERFACE }}"
     
   tasks:
   
@@ -30,11 +28,12 @@
     - name: Build Monitor Session
       nxos_config:
         lines:
-        - 10 permit ip 1.1.1.1/32 any log
-        - 20 permit ip 2.2.2.2/32 any log
+        - description Harmonic NMX {" monitor "}
+        - source interface {" interface "}
         - 30 permit ip 3.3.3.3/32 any log
         - 40 permit ip 4.4.4.4/32 any log
         parents: ip access-list test
         before: no ip access-list test
         replace: block
       delegate_to:
+      when: switch is Nexus 1
