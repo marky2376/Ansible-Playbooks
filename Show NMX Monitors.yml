@@ -10,3 +10,6 @@
       nxos_command:
         commands:
         - show running-config monitor all
+        register: monitor
+    - debug:
+        var: monitor.stdout_lines
