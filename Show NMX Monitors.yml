@@ -1,8 +1,8 @@
 --- 
-- name: "Provision Port Mirror"
+- name: "View Port Mirrors"
   connection: network_cli
   gather_facts: false
-  hosts: Chester_HE_Nexus Pod_1   
+  hosts: Chester_HE_Nexus_Pod_1   
     
   tasks:
   
