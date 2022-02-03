@@ -1,0 +1,22 @@
+--- 
+- name: "Provision Switches"
+  connection: network_cli
+  gather_facts: false
+  hosts: '{{ switch_group }}'
+    
+  vars: 
+    switch_group: "{{ SWITCHES }}"
+    switch_position: "{{ SWITCH }}"
+    interface_num: "{{ INTERFACE }}"
+    interface_des: "{{ DESCRIPTION }}"
+    vlans: "{{ VLANS }}"
+    y: "{{ '8' if switch_group == 'Chester_CO_POD2' else '6' }}"
+    
+  tasks:
+  
+    - name: Add Vlans to vPC link
+      nxos_l2_interface:
+        name: port-channel{{y}}{{y}}
+        mode: trunk
+        trunk_vlans: "{{ vlans }}"
+      when: (switch_group == "Chester_CO_POD2" or switch_group == "Commerce_Switches" or switch_group == "Richland_Switches" or switch_group == "Gumlog_Switches" or "Great_Falls_SWitches" or "Ridgeway_SWitches")
