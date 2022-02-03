@@ -15,9 +15,26 @@
     
   tasks:
   
-    - name: Add Vlans to vPC link
-      nxos_l2_interface:
-        name: port-channel{{y}}{{y}}
-        mode: trunk
-        trunk_vlans: "{{ vlans }}"
-      when: (switch_group == "Chester_CO_POD2" or switch_group == "Commerce_Switches" or switch_group == "Richland_Switches" or switch_group == "Gumlog_Switches" or "Great_Falls_SWitches" or "Ridgeway_SWitches")
+    - name: Show current monitor sessions
+      nxos_command:
+        commands:
+          - command: show running-config monitor all
+      when: (port_descriptions == "yes")
+  
+    - name: Show Port Descriptions
+      nxos_command:
+        commands:
+          - command: show int status
+      when: (preview == "yes")
+      
+    - name: Build Monitor Session
+      nxos_config:
+        lines:
+        - 10 permit ip 1.1.1.1/32 any log
+        - 20 permit ip 2.2.2.2/32 any log
+        - 30 permit ip 3.3.3.3/32 any log
+        - 40 permit ip 4.4.4.4/32 any log
+        parents: ip access-list test
+        before: no ip access-list test
+        replace: block
+      delegate_to:
