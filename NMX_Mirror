@@ -30,7 +30,7 @@
         - description Harmonic NMX {" monitor "}
         - source interface {" interface "}
         - destination interface Ethernet2/41
-        - 40 permit ip 4.4.4.4/32 any log
+        - no shut
         parents: monitor session {" monitor "}
         before: no monitor session {" monitor "}
         replace: block
@@ -42,7 +42,7 @@
         - description Harmonic NMX {" monitor "}
         - source interface {" interface "}
         - destination interface Ethernet1/4
-        - 40 permit ip 4.4.4.4/32 any log
+        - no shut
         parents: monitor session {" monitor "}
         before: no monitor session {" monitor "}
         replace: block
