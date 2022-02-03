@@ -1,0 +1,12 @@
+--- 
+- name: "Provision Port Mirror"
+  connection: network_cli
+  gather_facts: false
+  hosts: Chester_HE_Nexus Pod_1   
+    
+  tasks:
+  
+    - name: Show current monitor sessions
+      nxos_command:
+        commands:
+          - command: show running-config monitor all
