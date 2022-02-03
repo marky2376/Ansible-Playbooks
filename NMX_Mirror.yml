@@ -12,12 +12,6 @@
     
   tasks:
   
-    - name: Show current monitor sessions
-      nxos_command:
-        commands:
-          - command: show running-config monitor all
-      when: (port_descriptions == "yes")
-  
     - name: Show Port Descriptions
       nxos_command:
         commands:
