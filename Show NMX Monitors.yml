@@ -9,4 +9,4 @@
     - name: Show current monitor sessions
       nxos_command:
         commands:
-          - command: show running-config monitor all
+        - show running-config monitor all
