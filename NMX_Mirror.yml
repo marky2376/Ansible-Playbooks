@@ -1,0 +1,49 @@
+--- 
+- name: "Provision Port Mirror"
+  connection: network_cli
+  gather_facts: false
+  hosts: Chester_HE_Nexus Pod_1
+    
+  vars: 
+    preview: "{{ PREVIEW }}"
+    switch: "{{ SWITCH }}"
+    monitor: "{{ MONITOR }}" 
+    interface: "{{ INTERFACE }}"
+    
+  tasks:
+  
+    - name: Show current monitor sessions
+      nxos_command:
+        commands:
+          - command: show running-config monitor all
+      when: (port_descriptions == "yes")
+  
+    - name: Show Port Descriptions
+      nxos_command:
+        commands:
+          - command: show int status
+      when: (preview == "yes")
+      
+    - name: Build Monitor Session 1
+      nxos_config:
+        lines:
+        - description Harmonic NMX {" monitor "}
+        - source interface {" interface "}
+        - destination interface Ethernet2/41
+        - no shut
+        parents: monitor session {" monitor "}
+        before: no monitor session {" monitor "}
+        replace: block
+      when: (monitor == "1")
+      
+    - name: Build Monitor Session 2
+      nxos_config:
+        lines:
+        - description Harmonic NMX {" monitor "}
+        - source interface {" interface "}
+        - destination interface Ethernet1/4
+        - no shut
+        parents: monitor session {" monitor "}
+        before: no monitor session {" monitor "}
+        replace: block
+      when: (monitor == "2")
