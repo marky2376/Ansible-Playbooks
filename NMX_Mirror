@@ -6,7 +6,6 @@
     
   vars: 
     preview: "{{ PREVIEW }}"
-    port_descriptions "{{ PORT_DESC }}"
     switch: "{{ SWITCH }}"
     monitor: "{{ MONITOR }}" 
     interface: "{{ INTERFACE }}"
