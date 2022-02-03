@@ -2,12 +2,13 @@
 - name: "Provision Switches"
   connection: network_cli
   gather_facts: false
-  hosts: '{{ switch_group }}'
+  hosts: Chester_HE_Nexus Pod_1
     
   vars: 
-    switch_group: "{{ SWITCHES }}"
-    switch_position: "{{ SWITCH }}"
-    interface_num: "{{ INTERFACE }}"
+    preview: "{{ PREVIEW }}"
+    port_descriptions "{{ PORT_DESC }}"
+    switch: "{{ SWITCH }}"
+    monitor: "{{ MONITOR }}"
     interface_des: "{{ DESCRIPTION }}"
     vlans: "{{ VLANS }}"
     y: "{{ '8' if switch_group == 'Chester_CO_POD2' else '6' }}"
