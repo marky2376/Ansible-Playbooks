@@ -10,6 +10,9 @@
       nxos_command:
         commands:
         - show running-config monitor all
-        register: monitor
-    - debug:
-        var: monitor.stdout_lines
+      register: monitor
+   
+        
+    - name: "Show current monitor sessions"
+      debug:
+        var: monitor
