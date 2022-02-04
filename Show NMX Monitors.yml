@@ -15,4 +15,4 @@
         
     - name: "Show current monitor sessions"
       debug:
-        var: monitor
+        var: monitor.stdout_lines
