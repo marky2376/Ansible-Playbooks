@@ -5,7 +5,6 @@
   hosts: Chester_HE_Nexus Pod_1
     
   vars: 
-    preview: "{{ PREVIEW }}"
     switch: "{{ SWITCH }}"
     monitor: "{{ MONITOR }}" 
     interface: "{{ INTERFACE }}"
