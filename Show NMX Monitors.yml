@@ -5,7 +5,7 @@
   hosts: Chester_HE_Nexus_Pod_1   
   
   vars:
-     current: {{ CURRENT }}"
+     current: "{{ CURRENT }}"
      interfaces: "{{ INTERFACES }}"
     
   tasks:
