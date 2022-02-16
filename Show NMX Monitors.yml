@@ -10,7 +10,7 @@
     
   tasks:
   
-    - name: Show current monitor sessions
+    - name: "Show current monitor sessions"
       nxos_command:
         commands:
         - show running-config monitor all
@@ -23,7 +23,7 @@
         var: monitor.stdout_lines
       when: (current == "yes")
 
-    - name: Show Port Descriptions
+    - name: "Show Port Descriptions"
       nxos_command:
         commands:
           - command: show int status
@@ -33,4 +33,4 @@
     - name: "Show current interface status"
       debug:
         var: int_status.stdout_lines
-      when: (current == "yes")
+      when: (interfaces == "yes")
