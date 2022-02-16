@@ -10,12 +10,6 @@
     interface: "{{ INTERFACE }}"
     
   tasks:
-  
-    - name: Show Port Descriptions
-      nxos_command:
-        commands:
-          - command: show int status
-      when: (preview == "yes")
       
     - name: Build Monitor Session 1
       nxos_config:
