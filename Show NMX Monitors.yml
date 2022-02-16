@@ -3,6 +3,10 @@
   connection: network_cli
   gather_facts: false
   hosts: Chester_HE_Nexus_Pod_1   
+  
+  vars:
+     current: {{ CURRENT }}"
+     interfaces: "{{ INTERFACES }}"
     
   tasks:
   
@@ -11,8 +15,22 @@
         commands:
         - show running-config monitor all
       register: monitor
+      when: (current == "yes")
    
         
     - name: "Show current monitor sessions"
       debug:
         var: monitor.stdout_lines
+      when: (current == "yes")
+
+    - name: Show Port Descriptions
+      nxos_command:
+        commands:
+          - command: show int status
+      register: int_status
+      when: (interfaces == "yes")
+      
+    - name: "Show current interface status"
+      debug:
+        var: int_status.stdout_lines
+      when: (current == "yes")
