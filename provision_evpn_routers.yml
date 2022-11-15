@@ -155,6 +155,7 @@
       
     - name: "Extract Integer from prefix" 
       set_fact: prefix_int="{{ prefix_mask[-2:] }}"
+      when: layer_3 == 'yes'
       
     - name: "Derive network from IP"
       set_fact: ip_subnet={{ ip_address | ansible.utils.ipsubnet(prefix_int) }}
