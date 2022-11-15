@@ -152,6 +152,10 @@
           - ipv4 address {{ip_address}}{{prefix_mask}}
         parents: interface BVI {{evpn_id}}
       when: (layer_3 == 'yes' and data_center == "Toccoa")
+      
+    - name: Derive network from IP
+      set_fact: ip_subnet={{ ip_address | ansible.utils.ipsubnet(prefix_mask) }}
+      when: layer_3 == 'yes'
           
     - name: "Config OSPF if layer 3"
       iosxr_config: 
