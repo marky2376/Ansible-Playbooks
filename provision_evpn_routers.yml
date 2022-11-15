@@ -153,7 +153,7 @@
         parents: interface BVI {{evpn_id}}
       when: (layer_3 == 'yes' and data_center == "Toccoa")
       
-    - name: Derive network from IP
+    - name: "Derive network from IP"
       set_fact: ip_subnet={{ ip_address | ansible.utils.ipsubnet(prefix_mask) }}
       when: layer_3 == 'yes'
           
@@ -165,6 +165,16 @@
         parents:
           - router ospf MPLS
           - area 0
+      when: layer_3 == 'yes'
+      
+    - name: "Add network to BGP if Layer 3"
+      cisco.iosxr.iosxr_bgp:
+        bgp_as: 12208
+        address_family:
+        - name: ipv4
+          cast: unicast
+          networks:
+          - network: ip_subnet
       when: layer_3 == 'yes'
         
     - name: "Register commit changes to variable"
