@@ -160,16 +160,6 @@
     - name: "Derive network from IP"
       set_fact: ip_subnet={{ ip_address | ansible.utils.ipsubnet(prefix_int) }}
       when: layer_3 == 'yes'
-          
-    - name: "Config OSPF if layer 3"
-      iosxr_config: 
-        lines:
-          - interface BVI{{evpn_id}}
-          - passive enable
-        parents:
-          - router ospf MPLS
-          - area 0
-      when: layer_3 == 'yes'
       
     - name: "Add network to BGP if Layer 3"
       iosxr_config: 
