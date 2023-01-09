@@ -97,3 +97,12 @@
         var: g_prefix2
       when: location == "Georgia"
      
+    - name: "Set fact for Prefix"
+      set_fact:
+        gs_prefix2: "{{ gs_prefix['prefix']['prefix'] }}"
+      when: location == "Georgia_South"
+      
+    - name: "Print Prefix"
+      debug:
+        var: gs_prefix2
+      when: location == "Georgia"
