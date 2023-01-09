@@ -105,4 +105,4 @@
     - name: "Print Prefix"
       debug:
         var: gs_prefix2
-      when: location == "Georgia"
+      when: location == "Georgia_South"
