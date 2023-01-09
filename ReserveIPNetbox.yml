@@ -53,7 +53,7 @@
       register: g_prefix
       when: location == "Georgia"
       
-    - name: Get a new prefix when circuit is Georgia
+    - name: Get a new prefix when circuit is Georgia South
       netbox.netbox.netbox_prefix:
         netbox_url: http://netbox.truvista.net:8085
         validate_certs: False
