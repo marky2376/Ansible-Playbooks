@@ -77,7 +77,7 @@
         var: mgmt_address2['address']
       when: location == "MGMT"
       
-    - name: "20 - SHORTEN PREFIX DICT"
+    - name: "Set fact for Prefix"
       set_fact:
         prefix_info_sc: "{{ s_prefix['prefix']['prefix'] }}"
       when: location == "South_Carolina"
