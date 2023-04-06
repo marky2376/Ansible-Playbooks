@@ -14,4 +14,4 @@
      copy: 
        content: "{{ config.stdout[0] }}"
        dest: "/etc/ansible/backups/show_run_{{ inventory_hostname }}.txt"
-       mode: 0666
+       mode: 0750
