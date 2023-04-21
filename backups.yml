@@ -11,7 +11,7 @@
        commands:
          - show run   
      register: config
-   - name: save output to /etc/ansible/backups 
+   - name: save output to /home/mneely/ansible/backups 
      copy: 
        content: "{{ config.stdout[0] }}"
        dest: "/home/mneely/ansible/backups/show_run_{{ inventory_hostname }}.txt"
