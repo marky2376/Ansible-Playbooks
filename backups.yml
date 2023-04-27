@@ -1,7 +1,7 @@
 ---
 - hosts: all
   gather_facts: false
-  connection: local
+  connection: network_cli
 
   tasks:
    - name: show run 
