@@ -12,5 +12,5 @@
    - name: save output to /home/mneely/ansible/backups/
      copy: 
        content: "{{ config.stdout[0] }}"
-       dest: "/home/mneely/ansible/backups2/show_run_{{ inventory_hostname }}.txt"
+       dest: "/opt/backups/show_run_{{ inventory_hostname }}.txt"
        mode: 0755
