@@ -8,7 +8,6 @@
        commands:
          - show run   
      register: config
-     connection: local
      
    - name: save output to /home/mneely/ansible/backups/
      copy: 
