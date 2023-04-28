@@ -1,0 +1,16 @@
+---
+- name: Register and write to file
+  hosts: all
+  gather_facts: false
+  
+  tasks:
+    - name: Register variable
+      ios_command:
+        commands: show run
+      register: my_var
+      connection: network_cli
+
+    - name: Write to file
+      copy:
+        content: "{{ my_var.stdout[0] }}"
+        dest: "/opt/backups/show_run_{{ inventory_hostname }}.txt"
