@@ -14,4 +14,3 @@
        content: "{{ config.stdout[0] }}"
        dest: "/opt/backups/show_run_{{ inventory_hostname }}.txt"
        mode: 0755
-     delegate_to: 172.18.0.164
