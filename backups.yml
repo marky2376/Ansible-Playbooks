@@ -10,7 +10,7 @@
      register: config
      
    - name: save output to /home/mneely/ansible/backups/
-     copy: 
+     fetch: 
        content: "{{ config.stdout[0] }}"
        dest: "/opt/backups/show_run_{{ inventory_hostname }}.txt"
        mode: 0755
