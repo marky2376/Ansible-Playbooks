@@ -1,7 +1,7 @@
 ---
 - hosts: all
+  become: yes
   gather_facts: false
-  connection: local 
 
   tasks:
    - name: show run 
@@ -9,9 +9,11 @@
        commands:
          - show run   
      register: config
+     connection: local
      
    - name: save output to /home/mneely/ansible/backups/
-     fetch: 
-       src: "{{ config.stdout[0] }}"
-       dest: "/opt/backups/show_run_{{ inventory_hostname }}.txt"
+     copy: 
+       content: "{{ config.stdout[0] }}"
+       dest: "/etc/ansible/backups/show_run_{{ inventory_hostname }}.txt"
        mode: 0755
+     delegate_to: localhost
