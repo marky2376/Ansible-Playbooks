@@ -13,7 +13,7 @@
    - name: save output to /home/mneely/ansible/backups/
      copy: 
        content: "{{ config.stdout[0] }}"
-       dest: "/tmp/backups/show_run_{{ inventory_hostname }}.txt"
+       dest: "/tmp/show_run_{{ inventory_hostname }}.txt"
        mode: 0755
      delegate_to: localhost
      
