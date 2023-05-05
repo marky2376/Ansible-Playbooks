@@ -16,3 +16,9 @@
        dest: "/tmp/backups/show_run_{{ inventory_hostname }}.txt"
        mode: 0755
      delegate_to: localhost
+     
+   - name: fetch output from remote host to Tower
+     fetch:
+       src: "/tmp/show_run_{{ inventory_hostname }}.txt"
+       dest: /tmp/      # A subdir under /tmp will be created by default, named after the remote host, where the show_run_... file will be stored.
+
