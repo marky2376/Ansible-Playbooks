@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: false
+  gather_facts: false
+
+  tasks:
+   - name: show run
+     ios_command:
+       commands:
+         - show run
+     register: config
+
+   - debug:
+       var: config.stdout
+
+   - name: save output to /etc/ansible/backups
+     copy:
+       content: "{{ config.stdout[0] }}"
+       dest: "/tmp/show_run_{{ inventory_hostname }}.txt"
+       mode: 0755
+     delegate_to: localhost
