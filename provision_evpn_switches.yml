@@ -56,7 +56,7 @@
     - name: "Write configuration changes to a file"
       copy: 
         content: "{{ changes.stdout | replace('\\n', '\n') }}"
-        dest: /var/local/customers/{{interface_des}}/{{interface_des}}_switch{{switch_position}}.txt
+        dest: /etc/ansible/customers/{{interface_des}}/{{interface_des}}_switch{{switch_position}}.txt
         mode: 0666
      
     - name: Save run-config
