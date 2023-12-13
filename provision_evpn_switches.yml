@@ -10,7 +10,7 @@
     interface_num: "{{ INTERFACE }}"
     interface_des: "{{ DESCRIPTION }}"
     vlans: "{{ VLANS }}"
-    y: "{{ '8' if switch_group == 'Chester_CO_POD2' or switch_group == 'Camden_HE_POD2' or switch_group == 'Toccoa_Switches' or switch_group == 'Lewisville_Switches' or switch_group == 'Winnsboro_Switches' else '6' }}"
+    y: "{{ if switch_group == 'Chester_CO_POD2' or switch_group == 'Camden_HE_POD2' or switch_group == 'Toccoa_Switches' or switch_group == 'Lewisville_Switches' or switch_group == 'Winnsboro_Switches' then '8' elseif switch_group == 'Omega_HE_Nexus' then '9' else '6' }}"
     
   tasks:
   
