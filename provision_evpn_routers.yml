@@ -12,7 +12,7 @@
     ip_address: "{{ BVI_IP }}"
     prefix_mask: "{{ MASK }}"
     x: "{{ '3' if layer_3 == 'no' else '5' }}"
-    y: "{{ '8' if data_center == 'Chester_CO' else '6' }}"
+    y: "{{ '9' if data_center == 'Omega_HE_Nexus' else '8' }}"
       
   tasks:
         
