@@ -1,0 +1,188 @@
+--- 
+- name: "Provision Routers"
+  connection: network_cli
+  gather_facts: false
+  hosts: '{{ DataCenter }}'
+   
+  vars: 
+    customer_name: "{{ CustomerName }}"
+    data_center: "{{ DataCenter }}"
+    evpn_id: "{{ EVPN_ID }}"
+    layer_3: "{{ LAYER_3 }}"
+    ip_address: "{{ BVI_IP }}"
+    prefix_mask: "{{ MASK }}"
+    x: "{{ '3' if layer_3 == 'no' else '5' }}"
+    y: "{{ '9' if data_center == 'Omega_HE_Nexus' else '8' }}"
+      
+  tasks:
+        
+    - name: "Config Router EVPN"
+      iosxr_config: 
+        lines:
+          - evi {{evpn_id}}
+          - control-word-disable
+          - advertise-mac
+        parents: evpn
+        
+    - name: "Config Bundle Interface for layer 3"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - encapsulation dot1q {{evpn_id}}
+          - rewrite ingress tag pop 1 symmetric
+        parents: interface Bundle-Ether{{y}}.{{evpn_id}} l2transport
+      when: layer_3 == 'yes'
+      
+    - name: "Config Bundle Interface for layer 2"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - encapsulation dot1q {{evpn_id}}
+        parents: interface Bundle-Ether{{y}}.{{evpn_id}} l2transport
+      when: layer_3 == 'no'
+        
+    - name: "Config L2VPN for Layer 3"
+      iosxr_config: 
+        lines:
+          - bridge-domain {{customer_name}}
+          - interface Bundle-Ether{{y}}.{{evpn_id}}
+          - routed interface BVI{{evpn_id}}
+          - evi {{evpn_id}}
+        parents:
+          - l2vpn
+          - bridge group METRO-E
+      when: layer_3 == 'yes'
+      
+    - name: "Config L2VPN for Layer 2"
+      iosxr_config: 
+        lines:
+          - bridge-domain {{customer_name}}
+          - interface Bundle-Ether{{y}}.{{evpn_id}}
+          - evi {{evpn_id}}
+        parents:
+          - l2vpn
+          - bridge group METRO-E
+      when: layer_3 == 'no'
+        
+    - name: "Config BVI Interface for Commerce"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - host-routing
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+          - arp timeout 30
+          - mac-address 9ce1.99.99
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Commerce")
+      
+    - name: "Config BVI Interface for Gumlog"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - host-routing
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+          - arp timeout 30
+          - mac-address 9ce1.76cf.fcdf
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Gumlog")
+      
+    - name: "Config BVI Interface for Richland"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - host-routing
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+          - arp timeout 30
+          - mac-address 9ce1.76a4.12
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Richland")
+      
+    - name: "Config BVI Interface for Chester CO"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Chester_CO")
+      
+    - name: "Config BVI Interface for Lewisville CO"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Lewisville")
+      
+    - name: "Config BVI Interface for Great Falls CO"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Great_Falls")
+      
+    - name: "Config BVI Interface for Winnsboro HE"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Winnsboro")
+      
+    - name: "Config BVI Interface for Ridgeway CO"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Ridgeway")
+      
+    - name: "Config BVI Interface for Camden HE"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Camden")
+      
+    - name: "Config BVI Interface for Toccoa HE"
+      iosxr_config: 
+        lines:
+          - description {{customer_name}}
+          - ipv4 address {{ip_address}}{{prefix_mask}}
+        parents: interface BVI {{evpn_id}}
+      when: (layer_3 == 'yes' and data_center == "Toccoa")
+      
+    - name: "Extract Integer from prefix" 
+      set_fact: prefix_int="{{ prefix_mask[-2:] }}"
+      when: layer_3 == 'yes'
+      
+    - name: "Derive network from IP"
+      set_fact: ip_subnet={{ ip_address | ansible.utils.ipsubnet(prefix_int) }}
+      when: layer_3 == 'yes'
+      
+    - name: "Add network to BGP if Layer 3"
+      iosxr_config: 
+        lines:
+          - network {{ip_subnet}}
+        parents:
+          - router bgp 12208
+          - address-family ipv4 unicast
+      when: layer_3 == 'yes'
+        
+    - name: "Register commit changes to variable"
+      iosxr_command:
+        commands: show configuration commit changes last {{x}}
+      register: changes
+      
+    - name: "Create customer folder"
+      ansible.builtin.file:
+        path: /var/local/customers/{{customer_name}}
+        state: directory
+        mode: 0755
+      
+    - name: "Write configuration changes to a file"
+      copy: 
+        content: "{{ changes.stdout | replace('\\n', '\n') }}"
+        dest: /var/local/customers/{{customer_name}}/{{customer_name}}.txt
+        mode: 0666
