@@ -63,96 +63,15 @@
           - l2vpn
           - bridge group METRO-E
       when: layer_3 == 'no'
-        
-    - name: "Config BVI Interface for Commerce"
-      iosxr_config: 
-        lines:
-          - description {{customer_name}}
-          - host-routing
-          - ipv4 address {{ip_address}}{{prefix_mask}}
-          - arp timeout 30
-          - mac-address 9ce1.99.99
-        parents: interface BVI {{evpn_id}}
-      when: (layer_3 == 'yes' and data_center == "Commerce")
       
-    - name: "Config BVI Interface for Gumlog"
-      iosxr_config: 
-        lines:
-          - description {{customer_name}}
-          - host-routing
-          - ipv4 address {{ip_address}}{{prefix_mask}}
-          - arp timeout 30
-          - mac-address 9ce1.76cf.fcdf
-        parents: interface BVI {{evpn_id}}
-      when: (layer_3 == 'yes' and data_center == "Gumlog")
-      
-    - name: "Config BVI Interface for Richland"
-      iosxr_config: 
-        lines:
-          - description {{customer_name}}
-          - host-routing
-          - ipv4 address {{ip_address}}{{prefix_mask}}
-          - arp timeout 30
-          - mac-address 9ce1.76a4.12
-        parents: interface BVI {{evpn_id}}
-      when: (layer_3 == 'yes' and data_center == "Richland")
-      
-    - name: "Config BVI Interface for Chester CO"
+    - name: "Config BVI Interface for Router"
       iosxr_config: 
         lines:
           - description {{customer_name}}
           - ipv4 address {{ip_address}}{{prefix_mask}}
         parents: interface BVI {{evpn_id}}
-      when: (layer_3 == 'yes' and data_center == "Chester_CO")
-      
-    - name: "Config BVI Interface for Lewisville CO"
-      iosxr_config: 
-        lines:
-          - description {{customer_name}}
-          - ipv4 address {{ip_address}}{{prefix_mask}}
-        parents: interface BVI {{evpn_id}}
-      when: (layer_3 == 'yes' and data_center == "Lewisville")
-      
-    - name: "Config BVI Interface for Great Falls CO"
-      iosxr_config: 
-        lines:
-          - description {{customer_name}}
-          - ipv4 address {{ip_address}}{{prefix_mask}}
-        parents: interface BVI {{evpn_id}}
-      when: (layer_3 == 'yes' and data_center == "Great_Falls")
-      
-    - name: "Config BVI Interface for Winnsboro HE"
-      iosxr_config: 
-        lines:
-          - description {{customer_name}}
-          - ipv4 address {{ip_address}}{{prefix_mask}}
-        parents: interface BVI {{evpn_id}}
-      when: (layer_3 == 'yes' and data_center == "Winnsboro")
-      
-    - name: "Config BVI Interface for Ridgeway CO"
-      iosxr_config: 
-        lines:
-          - description {{customer_name}}
-          - ipv4 address {{ip_address}}{{prefix_mask}}
-        parents: interface BVI {{evpn_id}}
-      when: (layer_3 == 'yes' and data_center == "Ridgeway")
-      
-    - name: "Config BVI Interface for Camden HE"
-      iosxr_config: 
-        lines:
-          - description {{customer_name}}
-          - ipv4 address {{ip_address}}{{prefix_mask}}
-        parents: interface BVI {{evpn_id}}
-      when: (layer_3 == 'yes' and data_center == "Camden")
-      
-    - name: "Config BVI Interface for Toccoa HE"
-      iosxr_config: 
-        lines:
-          - description {{customer_name}}
-          - ipv4 address {{ip_address}}{{prefix_mask}}
-        parents: interface BVI {{evpn_id}}
-      when: (layer_3 == 'yes' and data_center == "Toccoa")
-      
+      when: (layer_3 == 'yes')
+         
     - name: "Extract Integer from prefix" 
       set_fact: prefix_int="{{ prefix_mask[-2:] }}"
       when: layer_3 == 'yes'
