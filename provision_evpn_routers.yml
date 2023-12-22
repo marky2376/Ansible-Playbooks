@@ -158,7 +158,7 @@
       when: layer_3 == 'yes'
       
     - name: "Derive network from IP"
-      set_fact: ip_subnet={{ ip_address | ansible.utils.ipsubnet(prefix_int) }}
+      set_fact: ip_subnet={{ ip_address | ipsubnet(prefix_int) }}
       when: layer_3 == 'yes'
       
     - name: "Add network to BGP if Layer 3"
