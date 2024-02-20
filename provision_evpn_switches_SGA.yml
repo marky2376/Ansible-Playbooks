@@ -44,8 +44,7 @@
         name: port-channel{{y}}{{y}}
         mode: trunk
         trunk_vlans: "{{ vlans }}"
-      when: (switch_group == "Chester_CO_POD2" or switch_group == "Camden_HE_POD2" or switch_group == "Commerce_Switches" or switch_group == "Richland_Switches" or switch_group == "Gumlog_Switches" or "Great_Falls_SWitches" or "Ridgeway_SWitches" or "Winnsboro_Switches" or "Toccoa_Switches" or "Lewisville_Switches")
-        
+              
     - name: "Register config changes to variable"
       nxos_command:
         commands:
