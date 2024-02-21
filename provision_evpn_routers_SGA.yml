@@ -85,7 +85,7 @@
         lines:
           - network {{ip_subnet}}
         parents:
-          - router bgp 12208
+          - router bgp 21898
           - address-family ipv4 unicast
       when: layer_3 == 'yes'
         
