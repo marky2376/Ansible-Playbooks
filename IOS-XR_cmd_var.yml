@@ -1,6 +1,6 @@
 ---
 - name: Run IOS-XR CLI command from variable
-  hosts: WAT_N_ASR
+  hosts: LEW_ASR
   gather_facts: false
   collections:
     - cisco.iosxr
