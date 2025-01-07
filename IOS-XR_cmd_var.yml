@@ -1,6 +1,6 @@
 ---
 - name: Run IOS-XR CLI command from variable
-  hosts: LEW_ASR
+  hosts: IOSXR
   gather_facts: false
   
   vars: 
