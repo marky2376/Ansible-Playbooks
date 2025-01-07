@@ -1,9 +1,12 @@
 ---
 - name: Run IOS-XR CLI command from variable
-  hosts: cisco_iosxr_devices
+  hosts: IOSXR
   gather_facts: false
   collections:
     - cisco.iosxr
+
+  vars: 
+    cli_command: "{{ Command }}"
 
   tasks:
   - name: Execute the CLI command
@@ -11,10 +14,7 @@
       commands:
         - "{{ cli_command }}"
       register: command_output
-    vars:
-      cli_command: "show ip interface brief"  # Replace with your desired CLI command from variable
-    delegate_to: "{{ inventory_hostname }}"
-  
+    
   - name: Print the command output
     debug:
       msg: "{{ command_output.stdout }}"
