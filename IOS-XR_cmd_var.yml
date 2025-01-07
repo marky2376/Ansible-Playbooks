@@ -10,7 +10,7 @@
 
   tasks:
   - name: Execute the CLI command
-    cisco.iosxr.iosxr_command:
+    iosxr_command:
       commands:
         - "{{ cli_command }}"
       register: command_output
