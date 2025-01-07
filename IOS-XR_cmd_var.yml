@@ -11,7 +11,7 @@
     iosxr_command:
       commands:
         - "{{ cli_command }}"
-      register: command_output
+    register: command_output
     
   - name: Print the command output
     debug:
