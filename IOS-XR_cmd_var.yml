@@ -2,9 +2,7 @@
 - name: Run IOS-XR CLI command from variable
   hosts: LEW_ASR
   gather_facts: false
-  collections:
-    - cisco.iosxr
-
+  
   vars: 
     cli_command: "{{ Command }}"
 
