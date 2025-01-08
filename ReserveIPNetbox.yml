@@ -22,7 +22,18 @@
         state: new
       register: mgmt_address
       when: location == "MGMT"
-      
+
+    - name: Get a new available IP inside SGA_MGMT vlan 2092
+      netbox.netbox.netbox_ip_address:
+        netbox_url: http://netbox.truvista.net:8085
+        validate_certs: False
+        netbox_token: 9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2
+        data:
+          prefix: 172.20.92.0/23
+          description: "{{ c_description }}"
+        state: new
+      register: sga_mgmt_address
+      when: location == "SGA_MGMT"  
       
     - name: Get a new prefix when circuit is South Carolina
       netbox.netbox.netbox_prefix:
@@ -76,7 +87,17 @@
       debug:
         var: mgmt_address2['address']
       when: location == "MGMT"
-      
+
+    - name: "Set fact for IP"
+      set_fact:
+        sga_mgmt_address2: "{{ sga_mgmt_address['ip_address'] }}"
+      when: location == "SGA_MGMT"
+     
+    - name: "Print IP address"
+      debug:
+        var: sga_mgmt_address2['address']
+      when: location == "SGA_MGMT"
+
     - name: "Set fact for Prefix"
       set_fact:
         prefix_info_sc: "{{ s_prefix['prefix']['prefix'] }}"
