@@ -1,6 +1,6 @@
 ---
 - name: Run IOS-XR CLI command from variable
-  hosts: IOSXR
+  hosts: '{{ Group }}'
   gather_facts: false
   
   vars:
