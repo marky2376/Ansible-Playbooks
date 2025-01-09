@@ -3,7 +3,8 @@
   hosts: IOSXR
   gather_facts: false
   
-  vars: 
+  vars:
+    host_group: "{{ Group }}"
     cli_command: "{{ Command }}"
 
   tasks:
