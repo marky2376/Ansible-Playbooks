@@ -1,0 +1,23 @@
+---
+- name: Run NX-OS CLI command from variable
+  hosts: '{{ Group }}'
+  gather_facts: false
+  
+  vars:
+    host_group: "{{ Group }}"
+    cli_command: "{{ Command }}"
+
+  tasks:
+  - name: Execute the CLI command
+    cisco.nxos.nxos_command:
+      commands:
+        - "{{ cli_command }}"
+    register: command_output
+
+  - name: Split and format the output for readability
+    set_fact:
+      formatted_output: "{{ command_output.stdout[0].splitlines() }}"
+
+  - name: Display the formatted output
+    debug:
+      msg: "{{ formatted_output }}"
