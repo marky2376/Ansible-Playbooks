@@ -2,6 +2,9 @@
 - name: Run NX-OS CLI command from variable
   hosts: '{{ Group }}'
   gather_facts: false
+
+  collections:
+    - cisco.nxos 
   
   vars:
     host_group: "{{ Group }}"
