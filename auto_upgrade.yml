@@ -3,4 +3,4 @@
   gather_facts: no
   tasks:
     - name: Run the Python script with parameters
-      command: "python3 /var/lib/awx/venv/python-scripts/scripts/auto_upgrade.py --router_ip={{ router_ip }} --emergency_phone={{ emergency_phone }}"
+      command: "python3 /var/lib/awx/venv/python-scripts/auto_upgrade.py --router_ip={{ router_ip }} --emergency_phone={{ emergency_phone }}"
