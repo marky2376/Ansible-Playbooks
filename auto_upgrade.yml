@@ -1,0 +1,6 @@
+- name: Execute Router Upgrade Script
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Run the Python script with parameters
+      command: "python3 /usr/projects/auto_upgrade/auto_upgrade.py --router_ip={{ router_ip }} --emergency_phone={{ emergency_phone }}"
