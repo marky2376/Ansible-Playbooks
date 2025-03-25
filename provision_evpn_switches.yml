@@ -18,7 +18,7 @@
       nxos_vlans:
         config:
           - vlan_id: "{{ vlans }}"
-          name: "{{ vlans }}"
+            name: "{{ vlans }}"
         state: merged
   
     - name: Set port to layer 2
