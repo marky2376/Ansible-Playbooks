@@ -14,8 +14,8 @@
         dest: "/tmp/show_run_{{ inventory_hostname }}.txt"
         mode: '0644'
 
-    - name: Fetch config file to host backups directory
-      fetch:
-         src: "/tmp/show_run_{{ inventory_hostname }}.txt"
-         dest: "/var/lib/awx/projects/_16__cisco_backups/backups"
-         flat: yes
+    - name: Copy config file from /tmp to host-mounted project directory
+      copy:
+        src: "/tmp/show_run_{{ inventory_hostname }}.txt"
+        dest: "/var/lib/awx/projects/_16__cisco_backups/backups/show_run_{{ inventory_hostname }}.txt"
+        remote_src: yes
