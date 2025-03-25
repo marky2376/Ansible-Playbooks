@@ -14,14 +14,8 @@
         dest: "/tmp/show_run_{{ inventory_hostname }}.txt"
         mode: '0644'
 
-    - name: Ensure backups directory exists
-      file:
-        path: "/var/lib/awx/projects/_16__cisco_backups/backups"
-        state: directory
-        mode: '0755'
-
-    - name: Move config file to mounted project folder
+    - name: Copy config to project root (host-visible)
       copy:
         src: "/tmp/show_run_{{ inventory_hostname }}.txt"
-        dest: "/var/lib/awx/projects/_16__cisco_backups/backups/show_run_{{ inventory_hostname }}.txt"
+        dest: "/var/lib/awx/projects/_16__cisco_backups/show_run_{{ inventory_hostname }}.txt"
         remote_src: yes
