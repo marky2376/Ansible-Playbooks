@@ -16,7 +16,9 @@
   
     - name: Add Vlans to database
       nxos_command:
-         commands: vlan "{{ vlans }}"
+         commands: 
+           - config t
+           - command: vlan "{{ vlans }}"
         
   
     - name: Set port to layer 2
