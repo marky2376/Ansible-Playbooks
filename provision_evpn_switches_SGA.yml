@@ -15,38 +15,43 @@
   tasks:
   
     - name: Add Vlans to database
-      nxos_vlans:
-        config:
-          - vlan_id: "{{ vlans }}"
-            name: "{{ vlans }}"
-        state: merged
+      nxos_command:
+         commands: 
+           - config t
+           - command: vlan {{ vlans }}
+        
   
     - name: Set port to layer 2
       nxos_interfaces:
-        name: "{{ interface_num }}"
-        description: "{{ interface_des }}"
-        mode: layer2
+        config:
+          - name: "{{ interface_num }}"
+            description: "{{ interface_des }}"
+            enabled: true
+            mode: layer2
         admin_state: up
       delegate_to: "{{ groups[switch_group][switch_position] }}"
       
     - name: Add Vlans to customer port
-      nxos_l2_interfaces:
-        name: "{{ interface_num }}"
-        mode: trunk
-        trunk_allowed_vlans: "{{ vlans }}"
+      nxos_command:
+         commands:
+           - config t
+           - command: int {{ interface_num }}
+           - command: switchport trunk allowed vlan add {{ vlans }}
       delegate_to: "{{ groups[switch_group][switch_position] }}"
       
     - name: Add Vlans to router uplink
-      nxos_l2_interfaces:
-        name: port-channel{{y}}
-        mode: trunk
-        trunk_vlans: "{{ vlans }}"
+      nxos_command:
+         commands:
+           - config t
+           - command: int port-channel {{y}} 
+           - command: switchport trunk allowed vlan add {{ vlans }}
           
     - name: Add Vlans to vPC link
-      nxos_l2_interfaces:
-        name: port-channel{{y}}{{y}}
-        mode: trunk
-        trunk_vlans: "{{ vlans }}"
+      nxos_command:
+         commands:
+           - config t
+           - command: int port-channel{{y}}{{y}}
+           - command: switchport trunk allowed vlan add {{ vlans }}
               
     - name: "Register config changes to variable"
       nxos_command:
