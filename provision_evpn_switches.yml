@@ -23,30 +23,35 @@
   
     - name: Set port to layer 2
       nxos_interfaces:
-        name: "{{ interface_num }}"
-        description: "{{ interface_des }}"
-        mode: layer2
+        config:
+          - name: "{{ interface_num }}"
+            description: "{{ interface_des }}"
+            enabled: true
+            mode: layer2
         admin_state: up
       delegate_to: "{{ groups[switch_group][switch_position] }}"
       
     - name: Add Vlans to customer port
-      nxos_l2_interfaces:
-        name: "{{ interface_num }}"
-        mode: trunk
-        trunk_allowed_vlans: "{{ vlans }}"
+      nxos_command:
+         commands:
+           - config t
+           - command: int {{ interface_num }}
+           - command: switchport trunk allowed vlan add {{ vlans }}
       delegate_to: "{{ groups[switch_group][switch_position] }}"
       
     - name: Add Vlans to router uplink
-      nxos_l2_interfaces:
-        name: port-channel{{y}}
-        mode: trunk
-        trunk_vlans: "{{ vlans }}"
+      nxos_command:
+         commands:
+           - config t
+           - command: int port-channel {{y}} 
+           - command: switchport trunk allowed vlan add {{ vlans }}
           
     - name: Add Vlans to vPC link
-      nxos_l2_interfaces:
-        name: port-channel{{y}}{{y}}
-        mode: trunk
-        trunk_vlans: "{{ vlans }}"
+      nxos_command:
+         commands:
+           - config t
+           - command: int port-channel{{y}}{{y}}
+           - command: switchport trunk allowed vlan add {{ vlans }}
       when: (switch_group == "Chester_CO_POD2" or switch_group == "Camden_HE_POD2" or switch_group == "Commerce_Switches" or switch_group == "Richland_Switches" or switch_group == "Gumlog_Switches" or "Great_Falls_SWitches" or "Ridgeway_SWitches" or "Winnsboro_Switches" or "Toccoa_Switches" or "Lewisville_Switches")
         
     - name: "Register config changes to variable"
