@@ -19,7 +19,7 @@
         vlan_range: "{{ vlans }}"
   
     - name: Set port to layer 2
-      nxos_interface:
+      nxos_interfaces:
         name: "{{ interface_num }}"
         description: "{{ interface_des }}"
         mode: layer2
@@ -27,20 +27,20 @@
       delegate_to: "{{ groups[switch_group][switch_position] }}"
       
     - name: Add Vlans to customer port
-      nxos_l2_interface:
+      nxos_l2_interfaces:
         name: "{{ interface_num }}"
         mode: trunk
         trunk_allowed_vlans: "{{ vlans }}"
       delegate_to: "{{ groups[switch_group][switch_position] }}"
       
     - name: Add Vlans to router uplink
-      nxos_l2_interface:
+      nxos_l2_interfaces:
         name: port-channel{{y}}
         mode: trunk
         trunk_vlans: "{{ vlans }}"
           
     - name: Add Vlans to vPC link
-      nxos_l2_interface:
+      nxos_l2_interfaces:
         name: port-channel{{y}}{{y}}
         mode: trunk
         trunk_vlans: "{{ vlans }}"
