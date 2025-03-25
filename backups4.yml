@@ -17,5 +17,5 @@
     - name: Copy config to project root (host-visible)
       copy:
         src: "/tmp/show_run_{{ inventory_hostname }}.txt"
-        dest: "/var/lib/awx/projects/_16__cisco_backups/show_run_{{ inventory_hostname }}.txt"
+        dest: "/runner/project/show_run_{{ inventory_hostname }}.txt"
         remote_src: yes
