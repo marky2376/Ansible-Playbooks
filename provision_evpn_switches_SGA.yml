@@ -15,7 +15,7 @@
   tasks:
   
     - name: Add Vlans to database
-      nxos_vlan:
+      nxos_vlans:
         vlan_range: "{{ vlans }}"
   
     - name: Set port to layer 2
