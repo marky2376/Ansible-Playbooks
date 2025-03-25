@@ -11,11 +11,11 @@
     - name: Save config to container tmp
       copy:
         content: "{{ running_config.stdout[0] }}"
-        dest: "/tmp/show_run_{{ inventory_hostname }}.txt"
+       dest: "/tmp/show_run_{{ inventory_hostname }}.txt"
         mode: '0644'
 
-   - name: Fetch config file to host backups directory
-     fetch:
-        src: "/tmp/show_run_{{ inventory_hostname }}.txt"
-        dest: "/home/mneely/backups/"
-        flat: yes
+    - name: Fetch config file to host backups directory
+      fetch:
+         src: "/tmp/show_run_{{ inventory_hostname }}.txt"
+         dest: "/home/mneely/backups/"
+         flat: yes
