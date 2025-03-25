@@ -17,5 +17,5 @@
     - name: Fetch config file to host backups directory
       fetch:
          src: "/tmp/show_run_{{ inventory_hostname }}.txt"
-         dest: "/home/mneely/backups/"
+         dest: "/var/lib/awx/projects/backups/"
          flat: yes
