@@ -16,7 +16,10 @@
   
     - name: Add Vlans to database
       nxos_vlans:
-        vlan_range: "{{ vlans }}"
+        config:
+          - vlan_id: "{{ vlans }}"
+          name: "{{ vlans }}"
+        state: merged
   
     - name: Set port to layer 2
       nxos_interfaces:
