@@ -11,7 +11,7 @@
     - name: Backup running config
       copy:
         content: "{{ running_config.stdout[0] }}"
-        dest: /etc/ansible/backups/show_run_{{ inventory_hostname }}.txt
+        dest: /home/mneely/backups/show_run_{{ inventory_hostname }}.txt
         mode: '0644'
       delegate_to: localhost
 
