@@ -8,12 +8,9 @@
         commands: show running-config
       register: running_config
 
-    - name: Ensure backup directory exists on control node
-     file:
-       path: /etc/ansible/backups
-       state: directory
-       mode: '0755'
-     delegate_to: localhost
+    - name: Show what would be written to file
+      debug:
+        msg: "{{ running_config.stdout[0][:500] }}"
       
     - name: Backup running config
       copy:
