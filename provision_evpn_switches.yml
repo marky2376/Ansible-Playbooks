@@ -15,11 +15,9 @@
   tasks:
   
     - name: Add Vlans to database
-      nxos_vlans:
-        config:
-          - vlan_id: "{{ vlans }}"
-            name: "{{ vlans }}"
-        state: merged
+      nxos_command:
+         commands: vlan "{{ vlans }}"
+        
   
     - name: Set port to layer 2
       nxos_interfaces:
