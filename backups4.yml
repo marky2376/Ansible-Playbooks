@@ -2,10 +2,16 @@
 - hosts: all
   become: false
   gather_facts: false
-
   tasks:
-   - name: show run
-     ios_config:
-       backup_options:
-         path: /etc/ansible/backups/
-         filename: "show_run_{{ inventory_hostname }}.txt"
+    - name: Get running config
+      ios_command:
+        commands: show running-config
+      register: running_config
+      
+    - name: Backup running config
+      copy:
+        content: "{{ running_config.results[0].stdout }}"
+        dest: /etc/ansible/backups/show_run_{{ inventory_hostname }}.txt
+        mode: 755
+      delegate_to: localhost
+
