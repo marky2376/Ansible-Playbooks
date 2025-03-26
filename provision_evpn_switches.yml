@@ -32,26 +32,24 @@
       delegate_to: "{{ groups[switch_group][switch_position] }}"
       
     - name: Add Vlans to customer port
-      nxos_command:
-         commands:
-           - config t
-           - command: int {{ interface_num }}
-           - command: switchport trunk allowed vlan add {{ vlans }}
+      nxos_config:
+        lines:
+          - switchport trunk allowed vlan add {{ vlans }}
+        parents: interface {{ interface_num }}
       delegate_to: "{{ groups[switch_group][switch_position] }}"
       
     - name: Add Vlans to router uplink
-      nxos_command:
-         commands:
-           - config t
-           - command: int port-channel {{y}} 
-           - command: switchport trunk allowed vlan add {{ vlans }}
+      nxos_config:
+        lines:
+          - switchport trunk allowed vlan add {{ vlans }}
+        parents: interface port-channel {{ y }}
+
           
     - name: Add Vlans to vPC link
-      nxos_command:
-         commands:
-           - config t
-           - command: int port-channel{{y}}{{y}}
-           - command: switchport trunk allowed vlan add {{ vlans }}
+      nxos_config:
+        lines:
+          - switchport trunk allowed vlan add {{ vlans }}
+        parents: interface port-channel {{ y }}{{ y }}
       when: (switch_group == "Chester_CO_POD2" or switch_group == "Camden_HE_POD2" or switch_group == "Commerce_Switches" or switch_group == "Richland_Switches" or switch_group == "Gumlog_Switches" or "Great_Falls_SWitches" or "Ridgeway_SWitches" or "Winnsboro_Switches" or "Toccoa_Switches" or "Lewisville_Switches")
         
     - name: "Register config changes to variable"
