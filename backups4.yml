@@ -3,19 +3,8 @@
   become: false
   gather_facts: false
   tasks:
-    - name: Get running config
-      ios_command:
-        commands: show running-config
-      register: running_config
-
-    - name: Save config to container tmp
-      copy:
-        content: "{{ running_config.stdout[0] }}"
-        dest: "/tmp/show_run_{{ inventory_hostname }}.txt"
-        mode: '0644'
-
-    - name: Copy config to project root (host-visible)
-      copy:
-        src: "/tmp/show_run_{{ inventory_hostname }}.txt"
-        dest: "/runner/project/show_run_{{ inventory_hostname }}.txt"
-        remote_src: yes
+    - name: Backup Cisco running configuration
+      cisco.ios.ios_config:
+        backup_options:
+          path: /home/mneely/backups
+          filename: show_run_{{ inventory_hostname }}.txt"
