@@ -7,5 +7,5 @@
       cisco.ios.ios_config:
         backup: true
         backup_options:
-          filename: show_run_{{ inventory_hostname }}.txt"
+          filename: show_run_{{ inventory_hostname }}.txt
           dir_path: /home/mneely/backups
