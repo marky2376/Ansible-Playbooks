@@ -6,5 +6,6 @@
     - name: Backup Cisco running configuration
       cisco.ios.ios_config:
         backup_options:
-          path: /home/mneely/backups
+          dir_path: /home/mneely/backups
           filename: show_run_{{ inventory_hostname }}.txt"
+      delegate_to: localhost
