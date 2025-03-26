@@ -5,4 +5,4 @@
   tasks:
     - name: Backup Cisco running configuration
       cisco.ios.ios_config:
-        backup_options:
+        backup: true
