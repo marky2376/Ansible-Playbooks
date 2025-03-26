@@ -8,4 +8,3 @@
         backup_options:
           dir_path: /home/mneely/backups
           filename: show_run_{{ inventory_hostname }}.txt"
-      delegate_to: localhost
