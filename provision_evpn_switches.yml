@@ -34,7 +34,7 @@
     - name: Add Vlans to customer port
       nxos_config:
         lines:
-          - switchport trunk allowed vlan add {{ vlans }}
+          - switchport trunk allowed vlan {{ vlans }}
         parents: interface {{ interface_num }}
       delegate_to: "{{ groups[switch_group][switch_position] }}"
       
