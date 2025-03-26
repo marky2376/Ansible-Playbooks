@@ -28,7 +28,7 @@
             description: "{{ interface_des }}"
             enabled: true
             mode: layer2
-        admin_state: up
+        state: merged
       delegate_to: "{{ groups[switch_group][switch_position] }}"
       
     - name: Add Vlans to customer port
