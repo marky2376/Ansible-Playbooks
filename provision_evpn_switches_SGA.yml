@@ -39,7 +39,7 @@
       delegate_to: "{{ groups[switch_group][switch_position] }}"
       
     - name: Add Vlans to router uplink
-      nnxos_config:
+      nxos_config:
         lines:
           - switchport trunk allowed vlan add {{ vlans }}
         parents: interface port-channel {{ y }}
