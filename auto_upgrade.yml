@@ -1,5 +1,5 @@
 - name: Execute Router Upgrade Script
-  hosts: localhost
+  hosts: controller_node
   gather_facts: no
   tasks:
     - name: Run the Python script with parameters
