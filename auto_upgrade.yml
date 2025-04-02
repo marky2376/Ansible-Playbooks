@@ -4,3 +4,12 @@
   tasks:
     - name: Run the Python script with parameters
       command: "python3 /etc/ansible/auto_upgrade.py --router_ip={{ router_ip }} --emergency_phone={{ emergency_phone }}"
+      register: script_output
+
+    - name: Show script STDOUT
+      debug:
+        msg: "{{ script_output.stdout }}"
+
+    - name: Show script STDERR
+      debug:
+        msg: "{{ script_output.stderr }}"
