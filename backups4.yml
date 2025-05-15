@@ -8,4 +8,4 @@
         backup: true
         backup_options:
           filename: show_run_{{ inventory_hostname }}.txt
-          dir_path: /home/mneely/backups
+          dir_path: /var/writable
