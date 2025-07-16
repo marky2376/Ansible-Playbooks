@@ -71,7 +71,7 @@
           - host-routing
           - ipv4 address {{ip_address}}{{prefix_mask}}
           - arp timeout 30
-          - mac-address 9ce1.99.99
+          - mac-address 9ce1.7.7
         parents: interface BVI {{evpn_id}}
       when: (layer_3 == 'yes' and data_center == "Commerce")
       
