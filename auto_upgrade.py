@@ -65,7 +65,7 @@ def call_until_human_amd(
         call = client.calls.create(
             to=EMERGENCY_PHONE_NUMBER,
             from_=TWILIO_FROM_NUMBER,
-            twiml=f'<Response><Say voice="alice">{message}</Say><Pause length="2"/></Response>',
+            twiml=f'<Response><Say voice="alice">{message}</Say><Pause length="4"/></Response>',
             timeout=ring_timeout,  # how long to ring before no-answer
             machine_detection="Enable"  # Enable Answering Machine Detection
         )
