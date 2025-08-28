@@ -50,7 +50,7 @@ def call_until_human_amd(
     max_retries=3,
     retry_delay=30,
     ring_timeout=60,
-    message="Emergency: Router Issue Detected!"
+    message="Emergency: Router Issue Detected! Please say 10 4 to acknoweldge!"
 ):
     """
     Places a call via Twilio with AMD enabled. It retries up to max_retries
@@ -65,7 +65,7 @@ def call_until_human_amd(
         call = client.calls.create(
             to=EMERGENCY_PHONE_NUMBER,
             from_=TWILIO_FROM_NUMBER,
-            twiml=f'<Response><Say voice="alice">{message}</Say></Response>',
+            twiml=f'<Response><Say voice="alice">{message}</Say><Pause length="2"/></Response>',
             timeout=ring_timeout,  # how long to ring before no-answer
             machine_detection="Enable"  # Enable Answering Machine Detection
         )
@@ -285,12 +285,13 @@ def main():
         "show bgp summ",
         "show ospf nei",
         "show ipv4 int brief",
-        "show run"
+        "show run",
+        "show platform"
         # Add more commands as needed
     ]
 
     # How long to wait between polls (in seconds)
-    poll_interval = 1200  # e.g., 60 seconds = 1 minute
+    poll_interval = 1800  # e.g., 60 seconds = 1 minute
 
     print("Running Pre Upgrade show commands...")
     success, first_output_file = poll_router(router_info, commands)
