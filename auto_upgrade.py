@@ -21,7 +21,10 @@ TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
 TWILIO_FROM_NUMBER = os.getenv('TWILIO_FROM_NUMBER')
 EMERGENCY_PHONE_NUMBER = '+18033792484'
 
-TIME_REGEX = re.compile(r'^\d{2}:\d{2}:\d{2}$') i
+TIME_REGEX = re.compile(
+    r'^(?:\d{1,2}:\d{2}:\d{2}(?:\.\d+)?|\d+[wdhms](?:\d+[wdhms])*)$',
+    re.IGNORECASE
+)
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Router Upgrade Script")
@@ -50,7 +53,7 @@ def call_until_human_amd(
     max_retries=3,
     retry_delay=30,
     ring_timeout=60,
-    message="Emergency: Router Issue Detected! Please say 10 4 to acknoweldge!"
+    message="Emergency: Router Issue Detected! Please say hello to acknowledge!"
 ):
     """
     Places a call via Twilio with AMD enabled. It retries up to max_retries
@@ -189,24 +192,27 @@ def omit_bgp_metadata(lines):
     return filtered
 
 def normalize_timestamps(lines):
-    """
-    Returns a list of lines where certain time/datetime patterns
-    are replaced with a fixed token 'TIME' (or just removed).
-    """
-    # Example regex patterns that might match times like:
-    #  "20:19:13.918" or "20:29:20.350" or "00:11:26" or "00:04:07"
-    # You can adjust these to match your device's timestamps more precisely.
-    time_pattern = re.compile(r"\b\d{2}:\d{2}:\d{2}(\.\d+)?\b")  # HH:MM:SS(.ddd)?
+    time_pattern = re.compile(r"\b\d{1,2}:\d{2}:\d{2}(?:\.\d+)?\b")
     date_pattern = re.compile(r"\b[A-Z][a-z]{2}\s[A-Z][a-z]{2}\s\d{1,2}\s\d{2}:\d{2}:\d{2}\.\d+\sUTC\b")
-    # Above tries to match lines like "Wed Jan 22 20:29:20.350 UTC"
+    # New: Cisco-style durations like 6d01h, 5w2d, 12h, 30m, 45s
+    duration_pattern = re.compile(r"\b\d+[wdhms](?:\d+[wdhms])*\b", re.IGNORECASE)
 
     normalized = []
     for line in lines:
-        # Replace date/time occurrences with a placeholder
+        # Replace full datetime stamps (e.g., "Wed Jan 22 20:29:20.350 UTC")
         line = date_pattern.sub("DATE_TIME", line)
+        # Replace HH:MM:SS(.ms)
         line = time_pattern.sub("TIME", line)
-        # Also remove "Neighbor is up for 00:xx:xx" times
-        line = re.sub(r"(Neighbor is up for )\d{2}:\d{2}:\d{2}", r"\1TIME", line)
+        # Replace durations in the specific OSPF phrase:
+        line = re.sub(
+            r"(Neighbor is up for )(\d{1,2}:\d{2}:\d{2}(?:\.\d+)?|\d+[wdhms](?:\d+[wdhms])*)",
+            r"\1TIME",
+            line,
+            flags=re.IGNORECASE
+        )
+        # (Optional) If you want to nuke standalone duration tokens anywhere else:
+        # line = duration_pattern.sub("TIME", line)
+
         normalized.append(line)
     return normalized
 
