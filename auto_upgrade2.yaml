@@ -1,0 +1,39 @@
+- name: Execute Router Upgrade Script
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Run the Python script with parameters
+      command: "python3 /etc/ansible/auto_upgrade.py --router_ip={{ router_ip }} --emergency_phone={{ emergency_phone }}"
+      register: script_output
+
+    # Get a timestamp on the controller to name the log file
+    - name: Set log timestamp
+      ansible.builtin.set_fact:
+        log_ts: "{{ lookup('pipe','date +%Y%m%d_%H%M%S') }}"
+
+    # Combine stdout/stderr into one block
+    - name: Build combined log text
+      ansible.builtin.set_fact:
+        combined_log: |-
+          === AUTO UPGRADE RUN @ {{ log_ts }} ===
+          Return code: {{ script_output.rc }}
+          --- STDOUT ---
+          {{ script_output.stdout }}
+          {% if script_output.stderr %}
+          --- STDERR ---
+          {{ script_output.stderr }}
+          {% endif %}
+
+    - name: Write log file on remote host
+      ansible.builtin.copy:
+        dest: "{{ log_dir }}/auto_upgrade_{{ inventory_hostname }}_{{ log_ts }}.log"
+        content: "{{ combined_log }}"
+        mode: "0644"
+
+    - name: Show script STDOUT in job output (optional)
+      ansible.builtin.debug:
+        msg: "{{ script_output.stdout }}"
+
+    - name: Show script STDERR
+      debug:
+        msg: "{{ script_output.stderr }}"
