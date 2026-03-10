@@ -41,7 +41,7 @@
         validate_certs: False
         netbox_token: 9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2
         data:
-          parent: "173.248.192.0/19"
+          parent: "74.171.192.0/18"
           prefix_length: "{{ prefix_length }}"
           description: "{{ c_description }}"
         state: present
@@ -56,7 +56,7 @@
         validate_certs: False
         netbox_token: 9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2
         data:
-          parent: "74.209.96.0/19"
+          parent: "74.171.128.0/18"
           prefix_length: "{{ prefix_length }}"
           description: "{{ c_description }}"
         state: present
@@ -70,7 +70,7 @@
         validate_certs: False
         netbox_token: 9a9f4b51cfa1fc1f3501cb28fd8b86b64aef05f2
         data:
-          parent: "74.209.64.0/19"
+          parent: "74.188.64.0/18"
           prefix_length: "{{ prefix_length }}"
           description: "{{ c_description }}"
         state: present
